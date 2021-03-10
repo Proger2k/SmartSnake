@@ -52,6 +52,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Game\Food.cs" />
+    <Compile Include="Game\MyPoint.cs" />
     <Compile Include="Game\Program.cs" />
     <Compile Include="Game\Snake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
