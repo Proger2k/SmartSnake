@@ -21,8 +21,8 @@
         }
         let projectedHeadSpeed = this.CalculateProjectedSpeed();
         
-        this.coordinates.Y = projectedHeadSpeed[0];
-        this.coordinates.X = projectedHeadSpeed[1];
+        this.coordinates.Y += projectedHeadSpeed.Vx;
+        this.coordinates.X += projectedHeadSpeed.Vy;
     }
 
     CalculateDirection(deltaPhi)
