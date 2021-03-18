@@ -1,11 +1,30 @@
 ﻿class Apple
 {
-    constructor()
+    constructor(count, height, width) 
     {
+        this.count = count;
+        this.height = height;
+        this.width = width;
     }
     
-    Draw()
+    Initialization()
     {
-        gameZone.innerHTML += `<div class="apple" style="left: ${100}px; top: ${100}px;"></div>`
+        for(let i = 0; i < this.count; i++)
+        {
+            let x = this.GetRandomInt(this.width);
+            let y = this.GetRandomInt(this.height);
+
+            gameZone.innerHTML += `<div class="apple" id="apple ${i}" style="left: ${x}px; top: ${y}px;"></div>`
+        }
+    }
+    
+    Draw(index)
+    {
+        
+    }
+
+    GetRandomInt(max)
+    {
+        return Math.floor(Math.random() * Math.floor(max));
     }
 }

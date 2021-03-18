@@ -13,8 +13,8 @@ let body = new Body(head, 30,45, coordinatesBody);
 
 let snake = new Snake(head, body);
 
-let apple = new Apple();
-apple.Draw();
+let apple = new Apple(5, 850, 1600);
+apple.Initialization();
 
 snake.Draw();
 snake.Intervals();
