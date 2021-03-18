@@ -1,10 +1,9 @@
 ﻿class Body
 {
-    constructor(head, length, bodyWidth, coordinates)
+    constructor(head, length, coordinates)
     {
         this.head = head;
         this.length = length;
-        this.bodyWindth = bodyWidth;
         this.coordinates = coordinates;
     } 
     
