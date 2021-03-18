@@ -10,7 +10,7 @@ class Snake
     {
         this.snakeMove = setInterval(() => {
             
-            this.head.Move(-1);
+            this.body.Move(-1);
         }, fps);
     }
     

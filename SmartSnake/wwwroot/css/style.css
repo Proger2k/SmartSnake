@@ -1,4 +1,4 @@
-﻿.game-zone {
+.game-zone {
     position: relative;
     min-height: 100vh;
     width: 100%;
@@ -11,7 +11,7 @@
     position: absolute;
     width: 35px;
     height: 35px;
-    background-image: url(../sprites/body.png);
+    background-image: url(../sprites/Body.png);
     background-repeat: no-repeat;
 }
 
@@ -19,6 +19,6 @@
     position: absolute;
     width: 35px;
     height: 35px;
-    background-image: url(../sprites/Head.png);
+    background-image: url(../sprites/head.png);
     background-repeat: no-repeat;
 }
