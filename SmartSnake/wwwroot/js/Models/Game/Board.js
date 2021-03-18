@@ -31,9 +31,13 @@
 
         let apple = new Apple(this.numberOfApples, this.height, this.width);
         apple.Initialization();
-
+        
         snake.Draw();
-        snake.Intervals();
+        
+        let snakes = new Array(1);
+        snakes[0] = snake;
+         let interval = new Interval(snakes);
+         interval.Move();
         
         let snakeController = new SnakeController(snake);
         snakeController.Movement();
