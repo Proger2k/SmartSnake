@@ -13,6 +13,9 @@ let body = new Body(head, 30,45, coordinatesBody);
 
 let snake = new Snake(head, body);
 
+let apple = new Apple();
+apple.Draw();
+
 snake.Draw();
 snake.Intervals();
 movement();

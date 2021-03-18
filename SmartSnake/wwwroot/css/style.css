@@ -22,3 +22,11 @@
     background-image: url(../sprites/head.png);
     background-repeat: no-repeat;
 }
+
+.apple{
+    position: absolute;
+    width: 20px;
+    height: 23px;
+    background-image: url(../sprites/apple.jpg);
+    background-repeat: no-repeat;
+}
