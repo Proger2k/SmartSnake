@@ -7,14 +7,6 @@ class Snake
         this.direction = -1;
     }
     
-    Intervals()
-    {
-        this.snakeMove = setInterval(() => {
-            
-            this.body.Move(this.direction);
-        }, fps);
-    }
-    
     Draw()
     {
         for(let i = 0; i < this.body.length; i++)
