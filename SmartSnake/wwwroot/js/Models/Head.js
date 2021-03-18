@@ -6,6 +6,7 @@
         this.speed = speed;
         this.headTurningSpeed = headTurningSpeed;
         this.coordinates = coordinates;
+        this.el = null;
     }
     
     Move(direction)
@@ -21,8 +22,11 @@
         }
         let projectedHeadSpeed = this.CalculateProjectedSpeed();
         
-        this.coordinates.Y += projectedHeadSpeed.Vx;
-        this.coordinates.X += projectedHeadSpeed.Vy;
+        this.coordinates.X += projectedHeadSpeed.Vx;
+        this.coordinates.Y += projectedHeadSpeed.Vy;
+
+        this.el.style.left = `${this.coordinates.X}px`
+        this.el.style.top = `${this.coordinates.Y}px`
     }
 
     CalculateDirection(deltaPhi)
