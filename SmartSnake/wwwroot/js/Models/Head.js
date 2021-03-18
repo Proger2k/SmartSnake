@@ -25,8 +25,9 @@
         this.coordinates.X += projectedHeadSpeed.Vx;
         this.coordinates.Y += projectedHeadSpeed.Vy;
 
-        this.el.style.left = `${this.coordinates.X}px`
-        this.el.style.top = `${this.coordinates.Y}px`
+        this.el.style.left = `${this.coordinates.X}px`;
+        this.el.style.top = `${this.coordinates.Y}px`;
+        this.el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
     }
 
     CalculateDirection(deltaPhi)
