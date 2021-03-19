@@ -47,7 +47,7 @@
 
             snakes[i] = new Snake(head, body);
 
-            snakes[i].Draw();
+            snakes[i].Draw(i);
         }
         
         return snakes;

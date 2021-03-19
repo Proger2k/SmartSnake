@@ -9,7 +9,7 @@
         this.el = null;
     }
     
-    Move(direction)
+    Move(direction, index)
     {
         switch(direction)
         {
@@ -25,9 +25,11 @@
         this.coordinates.X += projectedHeadSpeed.Vx;
         this.coordinates.Y += projectedHeadSpeed.Vy;
 
-        this.el.style.left = `${this.coordinates.X}px`;
-        this.el.style.top = `${this.coordinates.Y}px`;
-        this.el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
+        let el = document.getElementById(`${index} head`);
+
+        el.style.left = `${this.coordinates.X}px`;
+        el.style.top = `${this.coordinates.Y}px`;
+        el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
     }
 
     CalculateDirection(deltaPhi)

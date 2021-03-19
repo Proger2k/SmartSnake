@@ -7,7 +7,7 @@
         this.coordinates = coordinates;
     } 
     
-    Move(direction)
+    Move(direction, index)
     {
         for (let i = 0; i < this.length - 1; i++)
         {
@@ -20,11 +20,11 @@
         
         for(let i = 0; i < this.length; i++)
         {
-            let el = document.getElementById(`body ${i}`);
+            let el = document.getElementById(`${index} body ${i}`);
             el.style.left = `${this.coordinates[i].X}px`;
             el.style.top = `${this.coordinates[i].Y}px`;
         }
         
-        this.head.Move(direction);
+        this.head.Move(direction, index);
     }
 }

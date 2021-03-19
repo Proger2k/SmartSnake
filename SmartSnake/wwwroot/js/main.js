@@ -1,7 +1,7 @@
 ﻿fps = 1000/60;
 let gameZone = document.querySelector('.game-zone')
 
-let numberOfSnakes = 2;
+let numberOfSnakes = 5;
 let snakeLength = 30;
 let snakeSpeed = 3;
 let headTurningSpeed = Math.PI / 50;
