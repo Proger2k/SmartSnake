@@ -62,6 +62,44 @@
         snakeController.Movement();
     }
 
+    IsEaten(elHead)
+    {
+        for(let i = 0; i < this.numberOfApples; i++)
+        {
+            let elApple = document.getElementById(`apple ${i}`);
+            
+            if(this.IsInTheAppleArea(elHead, elApple))
+                this.RedrawingTheApple(elApple);
+        }
+    }
+    
+    IsInTheAppleArea(elHead, elApple)
+    {
+        let topApple = elApple.getBoundingClientRect().top;
+        let bottomApple = elApple.getBoundingClientRect().bottom;
+        let leftApple = elApple.getBoundingClientRect().left;
+        let rightApple = elApple.getBoundingClientRect().right;
+        
+        let topHead = elHead.getBoundingClientRect().top;
+        let bottomHead = elHead.getBoundingClientRect().bottom;
+        let leftHead = elHead.getBoundingClientRect().left;
+        let rightHead = elHead.getBoundingClientRect().right;
+        
+        return (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= topHead && topApple <= topHead)
+            || (rightHead >= rightApple - 5 && leftApple <= rightHead - 5 && bottomApple >= topHead && topApple <= topHead)
+            || (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5)
+            || (rightApple >= rightHead - 5 && leftApple <= rightHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5);
+    }
+
+    RedrawingTheApple(el)
+    {
+        let x = this.GetRandomInt(this.width);
+        let y = this.GetRandomInt(this.height);
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+    }
+    
     GetRandomInt(max)
     {
         return Math.floor(Math.random() * Math.floor(max));

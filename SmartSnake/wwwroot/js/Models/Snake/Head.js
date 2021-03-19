@@ -30,6 +30,8 @@
         el.style.left = `${this.coordinates.X}px`;
         el.style.top = `${this.coordinates.Y}px`;
         el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
+        
+        board.IsEaten(el);
     }
 
     CalculateDirection(deltaPhi)
