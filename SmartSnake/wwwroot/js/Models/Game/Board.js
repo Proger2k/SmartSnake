@@ -86,7 +86,7 @@
         let rightHead = elHead.getBoundingClientRect().right;
         
         return (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= topHead && topApple <= topHead)
-            || (rightHead >= rightApple - 5 && leftApple <= rightHead - 5 && bottomApple >= topHead && topApple <= topHead)
+            || (rightApple >= rightHead - 5 && leftApple <= rightHead - 5 && bottomApple >= topHead && topApple <= topHead)
             || (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5)
             || (rightApple >= rightHead - 5 && leftApple <= rightHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5);
     }
