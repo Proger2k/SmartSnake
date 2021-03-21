@@ -32,6 +32,7 @@
         el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
         
         board.IsEaten(el);
+        board.Crashed(el);
     }
 
     CalculateDirection(deltaPhi)

@@ -99,7 +99,12 @@
         el.style.left = `${x}px`;
         el.style.top = `${y}px`;
     }
-    
+
+    Crashed(head)
+    {
+        
+    }
+
     GetRandomInt(max)
     {
         return Math.floor(Math.random() * Math.floor(max));
