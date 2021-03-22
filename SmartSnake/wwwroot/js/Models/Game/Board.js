@@ -100,9 +100,28 @@
         el.style.top = `${y}px`;
     }
 
-    Crashed(head)
+    Crashed(head, index)
     {
+        if(head.getBoundingClientRect().right >= gameZone.getBoundingClientRect().right 
+        || head.getBoundingClientRect().left <= gameZone.getBoundingClientRect().left 
+        || head.getBoundingClientRect().top <= gameZone.getBoundingClientRect().top 
+        || head.getBoundingClientRect().bottom >= gameZone.getBoundingClientRect().bottom)
+            this.RemoveSnake(head, index);
+    }
+
+    RemoveSnake(head, index)
+    {
+        head.parentNode.removeChild(head);
         
+        let i = 0;
+        let el = document.getElementById(`${index} body ${i}`);
+        
+        while(el !== undefined)
+        {
+            el.parentElement.removeChild(el);
+            i++;
+            el = document.getElementById(`${index} body ${i}`);
+        }
     }
 
     GetRandomInt(max)
