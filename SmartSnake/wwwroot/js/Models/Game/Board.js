@@ -9,14 +9,14 @@
         this.numberOfApples = numberOfApples;
         this.width = width;
         this.height = height;
+        this.snakes = new Array(this.numberOfSnakes);
     }
 
     Initialization()
     {
         this.FoodInitialization();
-        
-        let snakes = this.SnakesInitialization();
-        this.ControlInitialization(snakes);
+        this.SnakesInitialization();
+        this.ControlInitialization(this.snakes);
     }
     
     FoodInitialization()
@@ -27,7 +27,7 @@
     
     SnakesInitialization()
     {
-        let snakes = new Array(this.numberOfSnakes);
+        this.snakes = new Array(this.numberOfSnakes);
         
         for (let i = 0; i < this.numberOfSnakes; i++)
         {
@@ -45,12 +45,10 @@
 
             let body = new Body(head, this.snakeLength, coordinatesBody);
 
-            snakes[i] = new Snake(head, body);
+            this.snakes[i] = new Snake(head, body);
 
-            snakes[i].Draw(i);
+            this.snakes[i].Draw(i);
         }
-        
-        return snakes;
     }
 
     ControlInitialization(snakes)
@@ -62,14 +60,17 @@
         snakeController.Movement();
     }
 
-    IsEaten(elHead)
+    IsEaten(elHead, index)
     {
         for(let i = 0; i < this.numberOfApples; i++)
         {
             let elApple = document.getElementById(`apple ${i}`);
             
             if(this.IsInTheAppleArea(elHead, elApple))
+            {
                 this.RedrawingTheApple(elApple);
+                this.IncreaseTheSizeOfTheSnake(index);
+            }
         }
     }
     
@@ -98,6 +99,11 @@
 
         el.style.left = `${x}px`;
         el.style.top = `${y}px`;
+    }
+
+    IncreaseTheSizeOfTheSnake(index)
+    {
+        
     }
 
     Crashed(head, index)

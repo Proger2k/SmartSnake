@@ -31,7 +31,7 @@
         el.style.top = `${this.coordinates.Y}px`;
         el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
         
-        board.IsEaten(el);
+        board.IsEaten(el, index);
         board.Crashed(el, index);
     }
 
