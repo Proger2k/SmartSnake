@@ -1,15 +1,16 @@
 class Snake
 {
-    constructor(head, body) 
+    constructor(head, body, index) 
     {
         this.head = head;
         this.body = body;
         this.direction = -1;
+        this.index = index;
     }
     
     Draw(index)
     {
-        for(let i = 0; i < this.body.length; i++)
+        for(let i = 0; i < this.body.coordinates.length; i++)
         {
             gameZone.innerHTML += `<div class="body" id="${index} body ${i}"
                                         style="left: ${this.body.coordinates[i].X}px;

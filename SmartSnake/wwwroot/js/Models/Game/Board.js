@@ -43,9 +43,9 @@
                 coordinatesBody[i] = {X: x, Y: y};
             }
 
-            let body = new Body(head, this.snakeLength, coordinatesBody);
+            let body = new Body(head, coordinatesBody);
 
-            this.snakes[i] = new Snake(head, body);
+            this.snakes[i] = new Snake(head, body, i);
 
             this.snakes[i].Draw(i);
         }
@@ -103,15 +103,14 @@
 
     IncreaseTheSizeOfTheSnake(index)
     {
-        this.snakes[index].body.length++;
-        
-        for(let i = this.snakes[index].body.length-2; i >= 0; i--)
+        let massIndex = this.FindIndex(index);
+        for(let i = this.snakes[massIndex].body.coordinates.length-1; i >= 0; i--)
         {
             let el = document.getElementById(`${index} body ${i}`);
             el.id = `${index} body ${i+1}`;
             
-            this.snakes[index].body.coordinates[i + 1] = {X: this.snakes[index].body.coordinates[i].X,
-                                                            Y: this.snakes[index].body.coordinates[i].Y};
+            this.snakes[massIndex].body.coordinates[i + 1] = {X: this.snakes[massIndex].body.coordinates[i].X,
+                                                            Y: this.snakes[massIndex].body.coordinates[i].Y};
         }
         
         let el = document.getElementById(`${index} body ${1}`);
@@ -135,8 +134,7 @@
         let i = 0;
         let el = document.getElementById(`${index} body ${i}`);
         
-        delete this.snakes[index];
-        this.snakes.length--;
+        this.RemoveItem(index);
         
         while(el !== null)
         {
@@ -144,6 +142,24 @@
             i++;
             el = document.getElementById(`${index} body ${i}`);
         }
+    }
+
+    RemoveItem(index)
+    {
+        this.snakes.splice(this.FindIndex(index), 1);
+    }
+    
+    FindIndex(index)
+    {
+        let result = 0;
+        
+        for(let i = 0; i < this.snakes.length; i++)
+        {
+            if(this.snakes[i].index === index)
+                return i;
+        }
+        
+        return  result;
     }
 
     GetRandomInt(max)
