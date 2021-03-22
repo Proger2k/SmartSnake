@@ -104,11 +104,21 @@
     IncreaseTheSizeOfTheSnake(index, head)
     {
         this.snakes[index].body.length++;
-        this.snakes[index].body.coordinates[this.snakes[index].body.length - 1] = 
-            {X: Number(head.style.left.slice(0, -2)), Y: Number(head.style.top.slice(0, -2))};
-
-        gameZone.innerHTML += `<div class="body" id="${index} body ${this.snakes[index].body.length-1}"
-                                    style="left: ${head.style.left}; top: ${head.style.top};"></div>`
+        
+        for(let i = this.snakes[index].body.length-2; i >= 0; i--)
+        {
+            let el = document.getElementById(`${index} body ${i}`);
+            el.id = `${index} body ${i+1}`;
+            
+            this.snakes[index].body.coordinates[i + 1] =  this.snakes[index].body.coordinates[i]
+        }
+        
+        let el = document.getElementById(`${index} body ${1}`);
+        this.snakes[index].body.coordinates[this.snakes[index].body.length - 1] =
+            {X: Number(el.style.left.slice(0, -2)), Y: Number(el.style.top.slice(0, -2))};
+        
+        gameZone.innerHTML += `<div class="body" id="${index} body ${0}"
+                                    style="left: ${el.style.left}; top: ${el.style.top};"></div>`
     }
 
     Crashed(head, index)
