@@ -113,10 +113,10 @@
 
     Crashed(head, index)
     {
-        if(head.getBoundingClientRect().right >= gameZone.getBoundingClientRect().right 
-        || head.getBoundingClientRect().left <= gameZone.getBoundingClientRect().left 
-        || head.getBoundingClientRect().top <= gameZone.getBoundingClientRect().top 
-        || head.getBoundingClientRect().bottom >= gameZone.getBoundingClientRect().bottom)
+        if(head.getBoundingClientRect().right >= width + 80
+        || head.getBoundingClientRect().left <= 0 
+        || head.getBoundingClientRect().top <= 0
+        || head.getBoundingClientRect().bottom >= height + 60)
             this.RemoveSnake(head, index);
     }
 
