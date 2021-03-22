@@ -69,7 +69,7 @@
             if(this.IsInTheAppleArea(elHead, elApple))
             {
                 this.RedrawingTheApple(elApple);
-                this.IncreaseTheSizeOfTheSnake(index, elHead);
+                this.IncreaseTheSizeOfTheSnake(index);
             }
         }
     }
@@ -101,7 +101,7 @@
         el.style.top = `${y}px`;
     }
 
-    IncreaseTheSizeOfTheSnake(index, head)
+    IncreaseTheSizeOfTheSnake(index)
     {
         this.snakes[index].body.length++;
         
@@ -110,15 +110,13 @@
             let el = document.getElementById(`${index} body ${i}`);
             el.id = `${index} body ${i+1}`;
             
-            this.snakes[index].body.coordinates[i + 1] =  this.snakes[index].body.coordinates[i]
+            this.snakes[index].body.coordinates[i + 1] = {X: this.snakes[index].body.coordinates[i].X,
+                                                            Y: this.snakes[index].body.coordinates[i].Y};
         }
         
         let el = document.getElementById(`${index} body ${1}`);
-        this.snakes[index].body.coordinates[this.snakes[index].body.length - 1] =
-            {X: Number(el.style.left.slice(0, -2)), Y: Number(el.style.top.slice(0, -2))};
-        
         gameZone.innerHTML += `<div class="body" id="${index} body ${0}"
-                                    style="left: ${el.style.left}; top: ${el.style.top};"></div>`
+                                    style="left: ${el.style.left}; top: ${el.style.top};"></div>`;
     }
 
     Crashed(head, index)
