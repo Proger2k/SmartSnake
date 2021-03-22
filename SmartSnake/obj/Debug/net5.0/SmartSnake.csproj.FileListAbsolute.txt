@@ -38,3 +38,4 @@ C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\ref\SmartSnake.dll
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\SmartSnake.pdb
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\SmartSnake.genruntimeconfig.cache
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\SmartSnake.csproj.CopyComplete
+C:\Users\Home\Desktop\SmartSnake\SmartSnake\bin\Debug\net5.0\Newtonsoft.Json.dll
