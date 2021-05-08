@@ -4,16 +4,37 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title></title>
+    <link rel="stylesheet" href="~/css/RegistrationStyle.css">
+    <meta charset='utf-8'>
+    <title>Login</title>
 </head>
+
 <body>
-<div>
-    
-</div>
+<form class="form">
+        <h3 class="form__title">Login</h3>
+
+        <div class="alert alert-danger" style="display:none;"></div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input type="text" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">Name</p>
+            <span></span>
+        </div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input type="password" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">Password</p>
+            <span></span>
+        </div>
+
+        <button type="submit" class="form__btn">Login</button>
+
+        <p class="form__help">
+            Don't have an account? <a asp-page="Registration">Register</a>
+        </p>
+    </form>
 </body>
 </html>

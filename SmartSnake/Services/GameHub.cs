@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace SmartSnake
 {
+    
+    [Authorize]
     public class GameHub : Hub
     {
         public async Task Send(GameHubModel model)

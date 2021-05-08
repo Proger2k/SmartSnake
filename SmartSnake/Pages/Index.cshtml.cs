@@ -5,9 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmartSnake.Pages
 {
+	
+	[Authorize]
 	public class IndexModel : PageModel
 	{
 		private readonly ILogger<IndexModel> _logger;
