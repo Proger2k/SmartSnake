@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SmartSnake.Data;
+using SmartSnake.Models;
 
 namespace SmartSnake
 {
@@ -15,13 +19,20 @@ namespace SmartSnake
 	{
 		public Startup(IConfiguration configuration)
 		{
-			Configuration = configuration;
+			_configuration = configuration;
 		}
 
-		public IConfiguration Configuration { get; }
+		private readonly IConfiguration _configuration;
 		
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddDbContext<ApplicationDbContext>(options =>
+				options.UseSqlServer(
+					_configuration.GetConnectionString("DefaultConnection")));
+			
+			services.AddIdentity<User, IdentityRole>()
+				.AddEntityFrameworkStores<ApplicationDbContext>();
+			
 			services.AddSignalR(hubOptions =>
 			{
 				hubOptions.EnableDetailedErrors = true;
