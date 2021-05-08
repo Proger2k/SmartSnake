@@ -6,14 +6,53 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title></title>
+    <link rel="stylesheet" href="~/css/RegistrationStyle.css">
+    <meta charset='utf-8'>
+    <title>Registration</title>
 </head>
 <body>
-<div>
-    <h1>HIRGKPROGPROPGR</h1>
-</div>
+    <form class="form">
+        <h3 class="form__title">Registration</h3>
+
+        <div class="alert alert-danger" style="display:none;"></div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input type="text" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">Name</p>
+            <span></span>
+        </div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input name="email" type="email" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">Email</p>
+            <span></span>
+        </div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input type="text" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">Age</p>
+            <span></span>
+        </div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input type="password" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">Password</p>
+            <span></span>
+        </div>
+
+        <div class="form__input-wrapper" data-input="input-1">
+            <input type="password" class="form__input" data-input="input-1">
+            <p class="form__input-text" data-input="input-1">PasswordConfirm</p>
+            <span></span>
+        </div>
+
+        <button type="submit" class="form__btn">Register</button>
+
+        <p class="form__help">
+            If you already have an account <a asp-page="Login">Login</a>
+        </p>
+    </form>
 </body>
 </html>
