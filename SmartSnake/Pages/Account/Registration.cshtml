@@ -13,39 +13,39 @@
     <title>Registration</title>
 </head>
 <body>
-    <form class="form">
+    <form class="form" method="post">
         <h3 class="form__title">Registration</h3>
 
         <div class="alert alert-danger" style="display:none;"></div>
 
         <div class="form__input-wrapper" data-input="input-1">
-            <input type="text" class="form__input" data-input="input-1">
+            <input asp-for="Input.Name" type="text" class="form__input" data-input="input-1">
             <p class="form__input-text" data-input="input-1">Name</p>
-            <span></span>
+            <span asp-validation-for="Input.Name"></span>
         </div>
 
         <div class="form__input-wrapper" data-input="input-1">
-            <input name="email" type="email" class="form__input" data-input="input-1">
+            <input asp-for="Input.Email" type="email" class="form__input" data-input="input-1">
             <p class="form__input-text" data-input="input-1">Email</p>
-            <span></span>
+            <span asp-validation-for="Input.Email"></span>
         </div>
 
         <div class="form__input-wrapper" data-input="input-1">
-            <input type="text" class="form__input" data-input="input-1">
+            <input asp-for="Input.Year" type="text" class="form__input" data-input="input-1">
             <p class="form__input-text" data-input="input-1">Age</p>
-            <span></span>
+            <span asp-validation-for="Input.Year"></span>
         </div>
 
         <div class="form__input-wrapper" data-input="input-1">
-            <input type="password" class="form__input" data-input="input-1">
+            <input asp-for="Input.Password" type="password" class="form__input" data-input="input-1">
             <p class="form__input-text" data-input="input-1">Password</p>
-            <span></span>
+            <span asp-validation-for="Input.Password"></span>
         </div>
 
         <div class="form__input-wrapper" data-input="input-1">
-            <input type="password" class="form__input" data-input="input-1">
+            <input asp-for="Input.PasswordConfirm" type="password" class="form__input" data-input="input-1">
             <p class="form__input-text" data-input="input-1">PasswordConfirm</p>
-            <span></span>
+            <span asp-validation-for="Input.PasswordConfirm"></span>
         </div>
 
         <button type="submit" class="form__btn">Register</button>
