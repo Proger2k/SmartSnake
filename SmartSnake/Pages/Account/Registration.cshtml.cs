@@ -62,7 +62,7 @@ namespace SmartSnake.Pages.Account
                 {
                     // установка куки
                     await _signInManager.SignInAsync(user, true);
-                    return RedirectToPage("/Menu/Index");
+                    return RedirectToPage("/Index");
                 }
                 else
                 {

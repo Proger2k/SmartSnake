@@ -1,9 +1,41 @@
 ﻿@page
-@model IndexModel
+@model SmartSnake.Pages.Menu.Index
+
 @{
-    ViewData["Title"] = "SmartSnake";
+    Layout = null;
 }
 
-<div class="game-zone">
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Menu</title>
+        <link rel="stylesheet" href="~/css/RegistrationStyle.css">
+        <meta charset='utf-8'>
+</head>
+<body>
+<div>
+    <form class="form" method="post">
+            <h3 class="form__title">Menu</h3>
     
+            <div class="alert alert-danger" style="display:none;"></div>
+    
+            <div class="form__input-wrapper" data-input="input-1">
+                <button type="submit" class="form__btn__menu">Играть онлайн</button>
+            </div>
+    
+            <div class="form__input-wrapper" data-input="input-1">
+                <button asp-page="Game/GameWithBots" type="submit" class="form__btn__menu">Играть с ботами</button>
+            </div>
+    
+            <div class="form__input-wrapper" data-input="input-1">
+                <button type="submit" class="form__btn__menu">Рейтинг</button>
+            </div>
+    
+            <div class="form__input-wrapper" data-input="input-1">
+                <button type="submit" class="form__btn__menu">Выход</button>
+            </div>
+    </form>
 </div>
+</body>
+</html>

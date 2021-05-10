@@ -75,4 +75,4 @@ C:\Users\Home\Desktop\SmartSnake\SmartSnake\bin\Debug\net5.0\runtimes\win\lib\ne
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Account\Login.cshtml.g.cs
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Account\Registration.cshtml.g.cs
-C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Menu\Index.cshtml.g.cs
+C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Game\GameWithBots.cshtml.g.cs

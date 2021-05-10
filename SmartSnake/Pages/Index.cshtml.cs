@@ -1,24 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
 
-namespace SmartSnake.Pages
+namespace SmartSnake.Pages.Menu
 {
-
-	[Authorize]
-	public class IndexModel : PageModel
-	{
-		private readonly ILogger<IndexModel> _logger;
-
-		public IndexModel(ILogger<IndexModel> logger)
-		{
-			_logger = logger;
-		}
-		
-		public void OnGet()
-		{
-
-		}
-	}
+    [Authorize]
+    public class Index : PageModel
+    {
+        public void OnGet()
+        {
+            
+        }
+    }
 }
