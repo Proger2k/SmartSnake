@@ -74,8 +74,30 @@ body {
 	color: #ED4C67;
 }
 
+.form__btn__menu{
+	width: 500px;
+	height: 70px;
+	margin: 20px auto;
+	background: transparent;
+	border: 2px solid #fff;
+	border-radius: 50px;
+	color: #FFF;
+	text-transform: uppercase;
+	font-weight: bold;
+	cursor: pointer;
+	transition: .3s;
+}
+	.form__btn__menu:hover {
+		background-color: #ED4C67;
+		border-color: #ED4C67;
+	}
+	
+	.form__btn__menu:focus {
+		outline-style: none;
+	}
+
 .form__btn {
-	width: 150px;
+	width: 300px;
 	height: 40px;
 	margin: 20px auto;
 	background: transparent;
