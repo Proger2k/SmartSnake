@@ -46,14 +46,12 @@ namespace SmartSnake.Pages.Account
                     await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, true, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Index");
+                    return RedirectToPage("/Menu/Index");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                 }
-                
-                return RedirectToPage("/Index");
             }
 
             return Page();
