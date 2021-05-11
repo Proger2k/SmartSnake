@@ -34,10 +34,12 @@ namespace SmartSnake.Pages.Account
             [Display(Name = "RememberMe?")]
             public bool RememberMe { get; set; }
         }
-        public void OnGet() { }
+
+        public void OnGet()
+        {
+        }
         
-
-
+        
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
@@ -55,6 +57,12 @@ namespace SmartSnake.Pages.Account
             }
 
             return Page();
+        }
+        
+        public async Task<IActionResult> OnPostLogout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToPage("Login");
         }
     }
 }
