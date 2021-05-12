@@ -38,8 +38,7 @@ namespace SmartSnake.Pages.Account
         public void OnGet()
         {
         }
-        
-        
+
         public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
@@ -50,10 +49,7 @@ namespace SmartSnake.Pages.Account
                 {
                     return RedirectToPage("/Index");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
-                }
+                ModelState.AddModelError("", "Неправильный логин и (или) пароль");
             }
 
             return Page();

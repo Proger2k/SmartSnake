@@ -1,7 +1,8 @@
 ﻿class Board
 {
-    constructor(numberOfSnakes, snakeLength,snakeSpeed, headTurningSpeed, numberOfApples, width, height)
+    constructor(gameMode, numberOfSnakes, snakeLength,snakeSpeed, headTurningSpeed, numberOfApples, width, height)
     {
+        this.gameMode = gameMode;
         this.numberOfSnakes = numberOfSnakes;
         this.snakeLength = snakeLength;
         this.snakeSpeed = snakeSpeed;
@@ -16,7 +17,7 @@
     {
         this.FoodInitialization();
         this.SnakesInitialization();
-        this.ControlInitialization(this.snakes);
+        this.ControlInitialization(this.snakes, this.gameMode);
     }
     
     FoodInitialization()
@@ -51,9 +52,9 @@
         }
     }
 
-    ControlInitialization(snakes)
+    ControlInitialization(snakes, gameMode)
     {
-        let interval = new Interval(snakes);
+        let interval = new Interval(snakes, gameMode);
         interval.Move();
 
         let snakeController = new SnakeController(snakes[0]);
