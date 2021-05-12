@@ -7,21 +7,39 @@
     background-image: url("../sprites/background.png");
 }
 
-.body {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background-image: url(../sprites/Body.png);
-    background-repeat: no-repeat;
-}
-
 .head{
     position: absolute;
     width: 25px;
     height: 25px;
-    background-image: url(../sprites/head.png);
+    background-image: url(../sprites/Head.png);
     background-repeat: no-repeat;
 }
+
+.body {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-image: url(../sprites/body.png);
+    background-repeat: no-repeat;
+}
+
+.enemy_head{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-image: url(../sprites/EnemyHead.png);
+    background-repeat: no-repeat;
+}
+
+.enemy_body {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-image: url(../sprites/EnemyBody.png);
+    background-repeat: no-repeat;
+}
+
+
 
 .apple{
     position: absolute;

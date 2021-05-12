@@ -115,7 +115,12 @@
         }
         
         let el = document.getElementById(`${index} body ${1}`);
-        gameZone.innerHTML += `<div class="body" id="${index} body ${0}"
+        
+        if(index === 0)
+            gameZone.innerHTML += `<div class="body" id="${index} body ${0}"
+                                    style="left: ${el.style.left}; top: ${el.style.top};"></div>`;
+        else
+            gameZone.innerHTML += `<div class="enemy_body" id="${index} body ${0}"
                                     style="left: ${el.style.left}; top: ${el.style.top};"></div>`;
     }
 
