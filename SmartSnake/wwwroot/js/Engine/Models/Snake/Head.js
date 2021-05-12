@@ -9,7 +9,7 @@
         this.el = null;
     }
     
-    Move(direction, index)
+    Move(body, direction, index)
     {
         switch(direction)
         {
@@ -32,7 +32,7 @@
         el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
         
         board.IsEaten(el, index);
-        board.Crashed(el, index);
+        board.Crashed(this, el, body, index);
     }
 
     CalculateDirection(deltaPhi)

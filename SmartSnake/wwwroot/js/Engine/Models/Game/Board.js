@@ -124,29 +124,55 @@
                                     style="left: ${el.style.left}; top: ${el.style.top};"></div>`;
     }
 
-    Crashed(head, index)
+    Crashed(head, el, body, index)
     {
-        if(head.getBoundingClientRect().right >= width + 80
-        || head.getBoundingClientRect().left <= 0 
-        || head.getBoundingClientRect().top <= 0
-        || head.getBoundingClientRect().bottom >= height + 60)
-            this.RemoveSnake(head, index);
+        if(el.getBoundingClientRect().right > this.width + 80
+        || el.getBoundingClientRect().left < 0 
+        || el.getBoundingClientRect().top < 0
+        || el.getBoundingClientRect().bottom >= this.height + 60)
+            this.RemoveSnake(head, el, body, index);
     }
 
-    RemoveSnake(head, index)
+    RemoveSnake(head, elHead, body, index)
     {
-        head.parentNode.removeChild(head);
-        
-        let i = 0;
-        let el = document.getElementById(`${index} body ${i}`);
-        
-        this.RemoveItem(index);
-        
-        while(el !== null)
+        if(index === 0)
         {
-            el.parentElement.removeChild(el);
-            i++;
-            el = document.getElementById(`${index} body ${i}`);
+            if(elHead.parentNode !== null)
+                elHead.parentNode.removeChild(elHead);
+
+            let i = 0;
+            let el = document.getElementById(`${index} body ${i}`);
+
+            this.RemoveItem(index);
+
+            while(el !== null)
+            {
+                el.parentElement.removeChild(el);
+                i++;
+                el = document.getElementById(`${index} body ${i}`);
+            }
+            this.GameOver();
+        }
+        else
+        {
+            let x = this.GetRandomInt(this.width);
+            let y = this.GetRandomInt(this.height);
+
+            head.coordinates.X = x;
+            head.coordinates.Y = y;
+            
+            elHead.style.left = x + 'px';
+            elHead.style.top = y + "px";
+            
+            for(let i = 0; i < body.coordinates.length; i++)
+            {
+                body.coordinates[i].X = x;
+                body.coordinates[i].Y = y;
+                
+                let el = document.getElementById(`${index} body ${i}`);
+                el.style.left = `${body.coordinates[i].X}px`;
+                el.style.top = `${body.coordinates[i].Y}px`;
+            }
         }
     }
 
@@ -176,5 +202,10 @@
     GetRandomDirection()
     {
         return Math.random() * 2 * Math.PI;
+    }
+    
+    GameOver()
+    {
+        
     }
 }

@@ -24,6 +24,6 @@
             el.style.top = `${this.coordinates[i].Y}px`;
         }
         
-        this.head.Move(direction, index);
+        this.head.Move(this, direction, index);
     }
 }
