@@ -1,9 +1,11 @@
 ﻿class Body
 {
-    constructor(head, coordinates)
+    constructor(head, coordinates, width, height)
     {
         this.head = head;
         this.coordinates = coordinates;
+        this.width = width;
+        this.height = height;
     } 
     
     Move(direction, index)

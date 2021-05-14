@@ -45,7 +45,7 @@
                 coordinatesBody[i] = {X: x, Y: y};
             }
 
-            let body = new Body(head, coordinatesBody);
+            let body = new Body(head, coordinatesBody, 25, 25);
 
             this.snakes[i] = new Snake(head, body, i);
 
@@ -83,24 +83,6 @@
                 this.IncreaseTheSizeOfTheSnake(index);
             }
         }
-    }
-    
-    IsInTheAppleArea(head, apple)
-    {
-        let topApple = apple.Y;
-        let bottomApple = apple.Y + apple.height;
-        let leftApple = apple.X;
-        let rightApple = apple.X + apple.width;
-        
-        let topHead = head.coordinates.Y;
-        let bottomHead = head.coordinates.Y + head.height;
-        let leftHead = head.coordinates.X;
-        let rightHead = head.coordinates.X + head.width;
-        
-        return (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= topHead && topApple <= topHead)
-            || (rightApple >= rightHead - 5 && leftApple <= rightHead - 5 && bottomApple >= topHead && topApple <= topHead)
-            || (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5)
-            || (rightApple >= rightHead - 5 && leftApple <= rightHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5);
     }
     
     IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2)
@@ -155,22 +137,40 @@
         if(rightHead > this.width + 80
         || leftHead < 0 
         || topHead < 0
-        || bottomHead >= this.height + 60)
+        || bottomHead >= this.height + 60) 
+        {
             this.RemoveSnake(head, body, index);
-        
+            return;
+        }
         for(let i = 0; i < this.snakes.length; i++)
         {
-            if(i !== index)
+            if(i !== index && this.snakes[i] !== undefined)
             {
-                let topEnemyHead = head.coordinates.Y;
-                let bottomEnemyHead = head.coordinates.Y + head.height;
-                let leftEnemyHead = head.coordinates.X;
-                let rightEnemyHead = head.coordinates.X + head.width;
+                let topEnemyHead = this.snakes[i].head.coordinates.Y;
+                let bottomEnemyHead = this.snakes[i].head.coordinates.Y + head.height;
+                let leftEnemyHead = this.snakes[i].head.coordinates.X;
+                let rightEnemyHead = this.snakes[i].head.coordinates.X + head.width;
                 
+                if(this.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
+                    topEnemyHead, bottomEnemyHead, leftEnemyHead, rightEnemyHead))
+                {
+                    this.RemoveSnake(head, body, index);
+                    return;
+                }
                
                 for(let j = this.snakes[i].body.length - 10; j >= 0; j -= 9)
                 {
-                    
+                    let topEnemyBody = this.snakes[i].body.coordinates.Y;
+                    let bottomEnemyBody = this.snakes[i].body.coordinates.Y + this.snakes[i].body.height;
+                    let leftEnemyBody = this.snakes[i].body.coordinates.X;
+                    let rightEnemyBody = this.snakes[i].body.coordinates.X + this.snakes[i].body.width;
+
+                    if(this.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
+                        topEnemyBody, bottomEnemyBody, leftEnemyBody, rightEnemyBody))
+                    {
+                        this.RemoveSnake(head, body, index);
+                        return;
+                    }
                 }
             }
         }
@@ -221,7 +221,8 @@
 
     RemoveItem(index)
     {
-        this.snakes.splice(this.FindIndex(index), 1);
+        //this.snakes.splice(this.FindIndex(index), 1);
+        this.snakes[index] = undefined;
     }
     
     FindIndex(index)
