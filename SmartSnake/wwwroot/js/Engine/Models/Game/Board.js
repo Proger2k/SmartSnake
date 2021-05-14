@@ -158,7 +158,7 @@
                     return;
                 }
                
-                for(let j = this.snakes[i].body.length - 10; j >= 0; j -= 9)
+                for(let j = this.snakes[i].body.length - 10; j >= 0; j -= 4)
                 {
                     let topEnemyBody = this.snakes[i].body.coordinates.Y;
                     let bottomEnemyBody = this.snakes[i].body.coordinates.Y + this.snakes[i].body.height;
@@ -231,7 +231,7 @@
         
         for(let i = 0; i < this.snakes.length; i++)
         {
-            if(this.snakes[i].index === index)
+            if(this.snakes[i] !== undefined && this.snakes[i].index === index)
                 return i;
         }
         
@@ -250,6 +250,7 @@
     
     GameOver()
     {
-        
+        let game = document.getElementById('restart_form');
+        game.style.display = "block";
     }
 }
