@@ -7,6 +7,8 @@
         this.headTurningSpeed = headTurningSpeed;
         this.coordinates = coordinates;
         this.el = null;
+        this.height = 25;
+        this.width = 25;
     }
     
     Move(body, direction, index)
@@ -25,14 +27,14 @@
         this.coordinates.X += projectedHeadSpeed.Vx;
         this.coordinates.Y += projectedHeadSpeed.Vy;
 
-        let el = document.getElementById(`${index} head`);
+        this.el = document.getElementById(`${index} head`);
 
-        el.style.left = `${this.coordinates.X}px`;
-        el.style.top = `${this.coordinates.Y}px`;
-        el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
+        this.el.style.left = `${this.coordinates.X}px`;
+        this.el.style.top = `${this.coordinates.Y}px`;
+        this.el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
         
-        board.IsEaten(el, index);
-        board.Crashed(this, el, body, index);
+        board.IsEaten(this, index);
+        board.Crashed(this, body, index);
     }
 
     CalculateDirection(deltaPhi)

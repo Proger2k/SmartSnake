@@ -11,6 +11,7 @@
         this.width = width;
         this.height = height;
         this.snakes = new Array(this.numberOfSnakes);
+        this.apples = new Array(this.numberOfApples);
     }
 
     Initialization()
@@ -22,8 +23,8 @@
     
     FoodInitialization()
     {
-        let apple = new Apple(this.numberOfApples, this.height, this.width);
-        apple.Initialization();
+        let apple = new Apple(23, 20);
+        apple.Initialization(this.apples, this.width, this.height);
     }
     
     SnakesInitialization()
@@ -61,31 +62,38 @@
         snakeController.Movement();
     }
 
-    IsEaten(elHead, index)
+    IsEaten(head, index)
     {
         for(let i = 0; i < this.numberOfApples; i++)
         {
-            let elApple = document.getElementById(`apple ${i}`);
+            //let elApple = document.getElementById(`apple ${i}`);
+            this.apples[i].el = document.getElementById(`apple ${i}`);
             
-            if(this.IsInTheAppleArea(elHead, elApple))
+            if(this.IsInTheAppleArea(head, this.apples[i]))
             {
-                this.RedrawingTheApple(elApple);
+                this.RedrawingTheApple(this.apples[i]);
                 this.IncreaseTheSizeOfTheSnake(index);
             }
         }
     }
     
-    IsInTheAppleArea(elHead, elApple)
+    IsInTheAppleArea(head, apple)
     {
+        let topApple = apple.Y;
+        let bottomApple = apple.Y + apple.height;
+        let leftApple = apple.X;
+        let rightApple = apple.X + apple.width;
+        /*
         let topApple = elApple.getBoundingClientRect().top;
         let bottomApple = elApple.getBoundingClientRect().bottom;
         let leftApple = elApple.getBoundingClientRect().left;
         let rightApple = elApple.getBoundingClientRect().right;
+         */
         
-        let topHead = elHead.getBoundingClientRect().top;
-        let bottomHead = elHead.getBoundingClientRect().bottom;
-        let leftHead = elHead.getBoundingClientRect().left;
-        let rightHead = elHead.getBoundingClientRect().right;
+        let topHead = head.coordinates.Y;
+        let bottomHead = head.coordinates.Y + head.height;
+        let leftHead = head.coordinates.X;
+        let rightHead = head.coordinates.X + head.width;
         
         return (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= topHead && topApple <= topHead)
             || (rightApple >= rightHead - 5 && leftApple <= rightHead - 5 && bottomApple >= topHead && topApple <= topHead)
@@ -93,13 +101,16 @@
             || (rightApple >= rightHead - 5 && leftApple <= rightHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5);
     }
 
-    RedrawingTheApple(el)
+    RedrawingTheApple(apple)
     {
         let x = this.GetRandomInt(this.width);
         let y = this.GetRandomInt(this.height);
 
-        el.style.left = `${x}px`;
-        el.style.top = `${y}px`;
+        apple.X = x;
+        apple.Y = y;
+
+        apple.el.style.left = `${x}px`;
+        apple.el.style.top = `${y}px`;
     }
 
     IncreaseTheSizeOfTheSnake(index)
@@ -124,21 +135,39 @@
                                     style="left: ${el.style.left}; top: ${el.style.top};"></div>`;
     }
 
-    Crashed(head, el, body, index)
+    Crashed(head, body, index)
     {
-        if(el.getBoundingClientRect().right > this.width + 80
-        || el.getBoundingClientRect().left < 0 
-        || el.getBoundingClientRect().top < 0
-        || el.getBoundingClientRect().bottom >= this.height + 60)
-            this.RemoveSnake(head, el, body, index);
+        let topHead = head.coordinates.Y;
+        let bottomHead = head.coordinates.Y + head.height;
+        let leftHead = head.coordinates.X;
+        let rightHead = head.coordinates.X + head.width;
+        
+        if(rightHead > this.width + 80
+        || leftHead < 0 
+        || topHead < 0
+        || bottomHead >= this.height + 60)
+            this.RemoveSnake(head, body, index);
+        
+        for(let i = 0; i < this.snakes.length; i++)
+        {
+            if(i !== index)
+            {
+                let headEnemy = document.getElementById(`${i} head`);
+                
+                for(let j = this.snakes[i].body.length - 10; j >= 0; j -= 9)
+                {
+                    
+                }
+            }
+        }
     }
 
-    RemoveSnake(head, elHead, body, index)
+    RemoveSnake(head, body, index)
     {
         if(index === 0)
         {
-            if(elHead.parentNode !== null)
-                elHead.parentNode.removeChild(elHead);
+            if(head.el.parentNode !== null)
+                head.el.parentNode.removeChild(head.el);
 
             let i = 0;
             let el = document.getElementById(`${index} body ${i}`);
@@ -160,9 +189,9 @@
 
             head.coordinates.X = x;
             head.coordinates.Y = y;
-            
-            elHead.style.left = x + 'px';
-            elHead.style.top = y + "px";
+
+            head.el.style.left = x + 'px';
+            head.el.style.top = y + "px";
             
             for(let i = 0; i < body.coordinates.length; i++)
             {

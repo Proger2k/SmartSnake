@@ -1,10 +1,12 @@
 ﻿class Food
 {
-    constructor(count, height, width)
+    constructor(height, width)
     {
-        this.count = count;
         this.height = height;
         this.width = width;
+        this.X = null;
+        this.Y = null;
+        this.el = null;
     }
     
     GetRandomInt(max)
