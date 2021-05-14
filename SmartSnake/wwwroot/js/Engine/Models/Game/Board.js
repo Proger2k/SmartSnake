@@ -66,11 +66,19 @@
     {
         for(let i = 0; i < this.numberOfApples; i++)
         {
-            //let elApple = document.getElementById(`apple ${i}`);
-            this.apples[i].el = document.getElementById(`apple ${i}`);
+            let top1 = this.apples[i].Y;
+            let bottom1 = this.apples[i].Y + this.apples[i].height;
+            let left1 = this.apples[i].X;
+            let right1 = this.apples[i].X + this.apples[i].width;
+
+            let top2 = head.coordinates.Y;
+            let bottom2 = head.coordinates.Y + head.height;
+            let left2 = head.coordinates.X;
+            let right2 = head.coordinates.X + head.width;
             
-            if(this.IsInTheAppleArea(head, this.apples[i]))
+            if(this.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
             {
+                this.apples[i].el = document.getElementById(`apple ${i}`);
                 this.RedrawingTheApple(this.apples[i]);
                 this.IncreaseTheSizeOfTheSnake(index);
             }
@@ -83,12 +91,6 @@
         let bottomApple = apple.Y + apple.height;
         let leftApple = apple.X;
         let rightApple = apple.X + apple.width;
-        /*
-        let topApple = elApple.getBoundingClientRect().top;
-        let bottomApple = elApple.getBoundingClientRect().bottom;
-        let leftApple = elApple.getBoundingClientRect().left;
-        let rightApple = elApple.getBoundingClientRect().right;
-         */
         
         let topHead = head.coordinates.Y;
         let bottomHead = head.coordinates.Y + head.height;
@@ -99,6 +101,14 @@
             || (rightApple >= rightHead - 5 && leftApple <= rightHead - 5 && bottomApple >= topHead && topApple <= topHead)
             || (rightApple >= leftHead && leftApple <= leftHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5)
             || (rightApple >= rightHead - 5 && leftApple <= rightHead && bottomApple >= bottomHead - 5 && topApple <= bottomHead - 5);
+    }
+    
+    IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2)
+    {
+        return (right1 >= left2 && left1 <= left2 && bottom1 >= top2 && top1 <= top2)
+            || (right1 >= right2 - 5 && left1 <= right2 - 5 && bottom1 >= top2 && top1 <= top2)
+            || (right1 >= left2 && left1 <= left2 && bottom1 >= bottom2 - 5 && top1 <= bottom2 - 5)
+            || (right1 >= right2 - 5 && left1 <= right2 && bottom1 >= bottom2 - 5 && top1 <= bottom2 - 5);
     }
 
     RedrawingTheApple(apple)
@@ -152,8 +162,12 @@
         {
             if(i !== index)
             {
-                let headEnemy = document.getElementById(`${i} head`);
+                let topEnemyHead = head.coordinates.Y;
+                let bottomEnemyHead = head.coordinates.Y + head.height;
+                let leftEnemyHead = head.coordinates.X;
+                let rightEnemyHead = head.coordinates.X + head.width;
                 
+               
                 for(let j = this.snakes[i].body.length - 10; j >= 0; j -= 9)
                 {
                     
