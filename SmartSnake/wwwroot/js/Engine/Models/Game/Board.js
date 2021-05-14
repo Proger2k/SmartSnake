@@ -251,6 +251,6 @@
     GameOver()
     {
         let game = document.getElementById('restart_form');
-        game.style.display = "block";
+        game.style.display = "flex";
     }
 }

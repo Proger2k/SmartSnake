@@ -6,19 +6,21 @@
 }
 
 <div class="game-zone">
-    <form class="form" id="restart_form" method="POST">
-        <h3 class="form__title">Menu</h3>
-    
-        <div class="alert alert-danger" style="display:none;"></div>
-    
-        <div class="form__input-wrapper" data-input="input-1">
-            <button type="submit" class="form__btn__menu">Restart</button>
-        </div>
-    
-        <div class="form__input-wrapper" data-input="input-1">
-            <button asp-page="/Index" type="submit" class="form__btn__menu">Выйти в главное меню</button>
-        </div>
-    </form>
+    <div class="wrapper" id="restart_form">
+        <form class="form" method="POST">
+            <h3 class="form__title">Game over</h3>
+
+            <div class="alert alert-danger" style="display:none;"></div>
+
+            <div class="form__input-wrapper" data-input="input-1">
+                <button type="submit" class="form__btn__menu">Restart</button>
+            </div>
+
+            <div class="form__input-wrapper" data-input="input-1">
+                <button asp-page="/Index" type="submit" class="form__btn__menu">Выйти в главное меню</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script src="~/js/Engine/Controllers/SnakeController.js"></script>

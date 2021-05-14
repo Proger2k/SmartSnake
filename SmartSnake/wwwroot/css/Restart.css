@@ -1,5 +1,14 @@
-﻿.form {
+﻿.wrapper {
+    height: 100vh;
     display: none;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.form {
     text-align: center;
     color: #FFF;
     letter-spacing: .05rem;
