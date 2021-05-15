@@ -1,10 +1,14 @@
+.main{
+    border: 14px black;
+}
 .game-zone {
     position: relative;
-    min-height: 100vh;
-    width: 100%;
+    min-height: 900px;
+    width: 2000px;
     padding: 0;
     margin: 0;
     background-image: url("../sprites/background.png");
+    background-size: 100%;
 }
 
 .head{

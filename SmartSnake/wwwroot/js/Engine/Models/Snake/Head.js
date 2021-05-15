@@ -32,6 +32,9 @@
         this.el.style.left = `${this.coordinates.X}px`;
         this.el.style.top = `${this.coordinates.Y}px`;
         this.el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
+
+        if(index === 0)
+            window.scrollTo(this.coordinates.X -1000, this.coordinates.Y - 450);
         
         board.IsEaten(this, index);
         board.Crashed(this, body, index);
