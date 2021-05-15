@@ -134,10 +134,10 @@
         let leftHead = head.coordinates.X;
         let rightHead = head.coordinates.X + head.width;
         
-        if(rightHead > this.width + 80
-        || leftHead < 0 
-        || topHead < 0
-        || bottomHead >= this.height + 60) 
+        if(rightHead >= this.width + 73
+        || leftHead <= 0 
+        || topHead <= 0
+        || bottomHead >= this.height + 50) 
         {
             this.RemoveSnake(head, body, index);
             return;
