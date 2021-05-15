@@ -6,7 +6,7 @@ let numberOfSnakes = 8;
 let snakeLength = 10;
 let snakeSpeed = 3;
 let headTurningSpeed = Math.PI / 50;
-let numberOfApples = 10;
+let numberOfApples = 40;
 let width = 4000;
 let height = 3000;
 

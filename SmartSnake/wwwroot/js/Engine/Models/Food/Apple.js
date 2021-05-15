@@ -4,8 +4,8 @@
     {
         for(let i = 0; i < apples.length; i++)
         {
-            let x = this.GetRandomInt(width);
-            let y = this.GetRandomInt(height);
+            let x = this.GetRandomArbitrary(160, width - 200);
+            let y = this.GetRandomArbitrary(150, height - 200);
             
             apples[i] = new Apple(this.width, this.height);
             

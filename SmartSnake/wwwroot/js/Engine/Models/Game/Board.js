@@ -35,8 +35,8 @@
         
         for (let i = 0; i < this.numberOfSnakes; i++)
         {
-            let x = this.GetRandomInt(this.width);
-            let y = this.GetRandomInt(this.height);
+            let x = this.GetRandomArbitrary(160, width - 200);
+            let y = this.GetRandomArbitrary(150, height - 200);
             let direction = this.GetRandomDirection();
 
             let head = new Head(direction, this.snakeSpeed, this.headTurningSpeed, { X: x, Y: y });
@@ -102,8 +102,8 @@
 
     RedrawingTheApple(apple)
     {
-        let x = this.GetRandomInt(this.width);
-        let y = this.GetRandomInt(this.height);
+        let x = this.GetRandomArbitrary(160, width - 200);
+        let y = this.GetRandomArbitrary(150, height - 200);
 
         apple.X = x;
         apple.Y = y;
@@ -144,10 +144,10 @@
         let leftHead = head.coordinates.X;
         let rightHead = head.coordinates.X + head.width;
         
-        if(rightHead >= this.width + 73
-        || leftHead <= 0 
-        || topHead <= 0
-        || bottomHead >= this.height + 50) 
+        if(rightHead >= 3810
+        || leftHead <= 145 
+        || topHead <= 110
+        || bottomHead >= 2915) 
         {
             this.RemoveSnake(head, body, index);
             return;
@@ -207,8 +207,8 @@
         }
         else
         {
-            let x = this.GetRandomInt(this.width);
-            let y = this.GetRandomInt(this.height);
+            let x = this.GetRandomArbitrary(160, width - 200);
+            let y = this.GetRandomArbitrary(150, height - 200);
 
             head.coordinates.X = x;
             head.coordinates.Y = y;
@@ -247,9 +247,9 @@
         return  result;
     }
 
-    GetRandomInt(max)
+    GetRandomArbitrary(min, max) 
     {
-        return Math.floor(Math.random() * Math.floor(max));
+        return Math.random() * (max - min) + min;
     }
     
     GetRandomDirection()

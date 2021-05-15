@@ -8,9 +8,9 @@
         this.Y = null;
         this.el = null;
     }
-    
-    GetRandomInt(max)
+
+    GetRandomArbitrary(min, max) 
     {
-        return Math.floor(Math.random() * Math.floor(max));
+        return Math.random() * (max - min) + min;
     }
 }
