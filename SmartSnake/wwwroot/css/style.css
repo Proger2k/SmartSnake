@@ -10,6 +10,17 @@
 
 .game-zone ::-webkit-scrollbar {width:0;}
 
+
+.score
+{
+    position: absolute;
+    font-size: 20pt;
+    width: 250px;
+    height: 25px;
+    color: white;
+    background-repeat: no-repeat;
+}
+
 .head{
     position: absolute;
     width: 25px;

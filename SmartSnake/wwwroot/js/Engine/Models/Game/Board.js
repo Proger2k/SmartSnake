@@ -67,6 +67,9 @@
     PlayerInitialization(snake)
     {
         this.Player = new Player(snake);
+        gameZone.innerHTML += `<div class="score" id="score" style="
+                    left: ${this.snakes[0].head.coordinates.X - document.documentElement.clientWidth / 2}px;
+                    top: ${this.snakes[0].head.coordinates.Y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
     }
 
     IsEaten(head, index)
@@ -89,6 +92,14 @@
                 this.RedrawingTheApple(this.apples[i]);
                 this.IncreaseTheSizeOfTheSnake(index);
             }
+        }
+        
+        if(index === 0)
+        {
+            let score = document.getElementById("score");
+            score.style.left = head.coordinates.X - document.documentElement.clientWidth / 2 + 'px';
+            score.style.top = head.coordinates.Y - document.documentElement.clientHeight / 2 + 'px';
+            score.innerText = "Your score: " + this.Player.score;
         }
     }
     
@@ -168,12 +179,12 @@
                     return;
                 }
                
-                for(let j = this.snakes[i].body.length - 10; j >= 0; j -= 4)
+                for(let j = this.snakes[i].body.coordinates.length - 10; j >= 0; j -= 4)
                 {
-                    let topEnemyBody = this.snakes[i].body.coordinates.Y;
-                    let bottomEnemyBody = this.snakes[i].body.coordinates.Y + this.snakes[i].body.height;
-                    let leftEnemyBody = this.snakes[i].body.coordinates.X;
-                    let rightEnemyBody = this.snakes[i].body.coordinates.X + this.snakes[i].body.width;
+                    let topEnemyBody = this.snakes[i].body.coordinates[j].Y;
+                    let bottomEnemyBody = this.snakes[i].body.coordinates[j].Y + this.snakes[i].body.height;
+                    let leftEnemyBody = this.snakes[i].body.coordinates[j].X;
+                    let rightEnemyBody = this.snakes[i].body.coordinates[j].X + this.snakes[i].body.width;
 
                     if(this.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
                         topEnemyBody, bottomEnemyBody, leftEnemyBody, rightEnemyBody))

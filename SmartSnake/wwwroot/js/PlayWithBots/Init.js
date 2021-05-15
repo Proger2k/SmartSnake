@@ -2,8 +2,8 @@
 let gameZone = document.querySelector('.game-zone')
 
 let gameMode = "single";
-let numberOfSnakes = 8;
-let snakeLength = 10;
+let numberOfSnakes = 3;
+let snakeLength = 100;
 let snakeSpeed = 3;
 let headTurningSpeed = Math.PI / 50;
 let numberOfApples = 40;
