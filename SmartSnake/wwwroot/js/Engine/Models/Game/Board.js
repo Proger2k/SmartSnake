@@ -119,8 +119,20 @@
         if(index === 0)
         {
             let score = document.getElementById("score");
-            score.style.left = head.coordinates.X - document.documentElement.clientWidth / 2 + 'px';
-            score.style.top = head.coordinates.Y - document.documentElement.clientHeight / 2 + 'px';
+            let x = head.coordinates.X - document.documentElement.clientWidth / 2;
+            let y = head.coordinates.Y - document.documentElement.clientHeight / 2;
+            if(x < 0)
+                x = 0;
+            else if (x > 2350)
+                x = 2355;
+            
+            if(y < 0)
+                y = 0;
+            
+            else if (y > 2110)
+                y = 2120;
+            score.style.left = x + 'px';
+            score.style.top = y + 'px';
             score.innerText = "Your score: " + this.Player.score;
         }
     }
