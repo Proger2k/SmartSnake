@@ -1,15 +1,14 @@
-.main{
-    border: 14px black;
-}
 .game-zone {
     position: relative;
-    min-height: 900px;
-    width: 2000px;
+    height: 3000px;
+    width: 4000px;
     padding: 0;
     margin: 0;
     background-image: url("../sprites/background.png");
     background-size: 100%;
 }
+
+.game-zone ::-webkit-scrollbar {width:0;}
 
 .head{
     position: absolute;

@@ -186,8 +186,6 @@
             let i = 0;
             let el = document.getElementById(`${index} body ${i}`);
 
-            this.RemoveItem(index);
-
             while(el !== null)
             {
                 el.parentElement.removeChild(el);
@@ -195,6 +193,7 @@
                 el = document.getElementById(`${index} body ${i}`);
             }
             this.GameOver();
+            this.RemoveItem(index);
         }
         else
         {
@@ -250,7 +249,8 @@
     
     GameOver()
     {
-        let game = document.getElementById('restart_form');
-        game.style.display = "flex";
+        let link = document.getElementById("restart_link");
+        link.href = "/Game/Restart?score=" + "500";
+        link.click();
     }
 }

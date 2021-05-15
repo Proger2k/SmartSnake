@@ -7,8 +7,8 @@ let snakeLength = 10;
 let snakeSpeed = 3;
 let headTurningSpeed = Math.PI / 50;
 let numberOfApples = 10;
-let width = 2000;
-let height = 900;
+let width = 4000;
+let height = 3000;
 
 let board = new Board(
     gameMode,

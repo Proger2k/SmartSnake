@@ -1,6 +1,7 @@
 ﻿.wrapper {
+    background-image: url("../sprites/Фон.png");
     height: 100vh;
-    display: none;
+    display: flex;
     -webkit-justify-content: center;
     justify-content: center;
     -webkit-align-items: center;
@@ -9,6 +10,7 @@
 }
 
 .form {
+    position: absolute;
     text-align: center;
     color: #FFF;
     letter-spacing: .05rem;
