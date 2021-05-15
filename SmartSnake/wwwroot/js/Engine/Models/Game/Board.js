@@ -12,6 +12,7 @@
         this.height = height;
         this.snakes = new Array(this.numberOfSnakes);
         this.apples = new Array(this.numberOfApples);
+        this.pineaples = new Array(0);
         this.Player = null;
     }
 
@@ -90,7 +91,28 @@
             {
                 this.apples[i].el = document.getElementById(`apple ${i}`);
                 this.RedrawingTheApple(this.apples[i]);
-                this.IncreaseTheSizeOfTheSnake(index);
+                this.IncreaseTheSizeOfTheSnake(index, 1);
+            }
+        }
+
+        for(let i = 0; i < this.pineaples.length; i++)
+        {
+            let top1 = this.pineaples[i].Y;
+            let bottom1 = this.pineaples[i].Y + this.pineaples[i].height;
+            let left1 = this.pineaples[i].X;
+            let right1 = this.pineaples[i].X + this.pineaples[i].width;
+
+            let top2 = head.coordinates.Y;
+            let bottom2 = head.coordinates.Y + head.height;
+            let left2 = head.coordinates.X;
+            let right2 = head.coordinates.X + head.width;
+
+            if(this.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
+            {
+                let el = document.getElementById(`pineapple ${i}`);
+                el.parentElement.removeChild(el);
+                
+                this.IncreaseTheSizeOfTheSnake(index, 5);
             }
         }
         
@@ -123,10 +145,10 @@
         apple.el.style.top = `${y}px`;
     }
 
-    IncreaseTheSizeOfTheSnake(index)
+    IncreaseTheSizeOfTheSnake(index, score)
     {
         if(index === 0)
-            this.Player.score++;
+            this.Player.score += score;
         
         let massIndex = this.FindIndex(index);
         for(let i = this.snakes[massIndex].body.coordinates.length-1; i >= 0; i--)
@@ -199,6 +221,13 @@
 
     RemoveSnake(head, body, index)
     {
+        let pineapple = new Pineapple(40, 26);
+        pineapple.X = head.coordinates.X;
+        pineapple.Y = head.coordinates.Y;
+        this.pineaples.push(pineapple);
+        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineaples.length - 1}" style="left: ${pineapple.X}px; top: ${pineapple.Y}px;"></div>`
+
+        
         if(index === 0)
         {
             if(head.el.parentNode !== null)

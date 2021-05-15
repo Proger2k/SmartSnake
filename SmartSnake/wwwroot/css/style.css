@@ -62,3 +62,11 @@
     background-image: url(../sprites/apple.jpg);
     background-repeat: no-repeat;
 }
+
+.pineapple{
+    position: absolute;
+    width: 26px;
+    height: 40px;
+    background-image: url(../sprites/Pineapple.png);
+    background-repeat: no-repeat; 
+}
