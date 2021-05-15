@@ -97,6 +97,8 @@
 
         for(let i = 0; i < this.pineaples.length; i++)
         {
+            if(this.pineaples[i] === null)
+                continue;
             let top1 = this.pineaples[i].Y;
             let bottom1 = this.pineaples[i].Y + this.pineaples[i].height;
             let left1 = this.pineaples[i].X;
@@ -111,6 +113,7 @@
             {
                 let el = document.getElementById(`pineapple ${i}`);
                 el.parentElement.removeChild(el);
+                this.pineaples[i] = null;
                 
                 this.IncreaseTheSizeOfTheSnake(index, 5);
             }
