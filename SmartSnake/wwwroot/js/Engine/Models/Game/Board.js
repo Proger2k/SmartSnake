@@ -12,6 +12,7 @@
         this.height = height;
         this.snakes = new Array(this.numberOfSnakes);
         this.apples = new Array(this.numberOfApples);
+        this.Player = null;
     }
 
     Initialization()
@@ -19,6 +20,7 @@
         this.FoodInitialization();
         this.SnakesInitialization();
         this.ControlInitialization(this.snakes, this.gameMode);
+        this.PlayerInitialization(this.snakes[0]);
     }
     
     FoodInitialization()
@@ -60,6 +62,11 @@
 
         let snakeController = new SnakeController(snakes[0]);
         snakeController.Movement();
+    }
+    
+    PlayerInitialization(snake)
+    {
+        this.Player = new Player(snake);
     }
 
     IsEaten(head, index)
@@ -107,6 +114,9 @@
 
     IncreaseTheSizeOfTheSnake(index)
     {
+        if(index === 0)
+            this.Player.score++;
+        
         let massIndex = this.FindIndex(index);
         for(let i = this.snakes[massIndex].body.coordinates.length-1; i >= 0; i--)
         {
@@ -250,7 +260,7 @@
     GameOver()
     {
         let link = document.getElementById("restart_link");
-        link.href = "/Game/Restart?score=" + "500";
+        link.href = "/Game/Restart?score=" + `${this.Player.score}`;
         link.click();
     }
 }
