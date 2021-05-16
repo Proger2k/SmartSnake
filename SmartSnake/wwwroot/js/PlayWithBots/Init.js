@@ -11,7 +11,6 @@ let width = 4000;
 let height = 3000;
 
 let board = new Board(
-    gameMode,
     numberOfSnakes,
     snakeLength,
     snakeSpeed,

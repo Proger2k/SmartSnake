@@ -4,7 +4,6 @@ class Snake
     {
         this.head = head;
         this.body = body;
-        this.direction = -1;
         this.index = index;
     }
     

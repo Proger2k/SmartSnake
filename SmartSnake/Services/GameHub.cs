@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using SmartSnake.Models;
 
 namespace SmartSnake
 {
@@ -26,10 +27,5 @@ namespace SmartSnake
             await Clients.All.SendAsync("Notify", $"{Context.ConnectionId}", "-1");
             await base.OnDisconnectedAsync(exception);
         }
-    }
-
-    public class GameHubModel
-    {
-        public string ConnectionId { get; set; }
     }
 }

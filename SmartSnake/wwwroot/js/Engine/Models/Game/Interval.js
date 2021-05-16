@@ -1,14 +1,13 @@
 ﻿class  Interval
 {
-    constructor(snakes, gameMode)
+    constructor(snakes)
     {
         this.snakes = snakes;
-        this.gameMode = gameMode;
     }
 
     Move()
     {
-        switch (this.gameMode) 
+        switch (gameMode) 
         {
             case "single":
                 this.singleMode = setInterval(() => {

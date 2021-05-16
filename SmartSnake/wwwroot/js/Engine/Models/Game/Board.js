@@ -1,8 +1,7 @@
 ﻿class Board
 {
-    constructor(gameMode, numberOfSnakes, snakeLength,snakeSpeed, headTurningSpeed, numberOfApples, width, height)
+    constructor(numberOfSnakes, snakeLength,snakeSpeed, headTurningSpeed, numberOfApples, width, height)
     {
-        this.gameMode = gameMode;
         this.numberOfSnakes = numberOfSnakes;
         this.snakeLength = snakeLength;
         this.snakeSpeed = snakeSpeed;
@@ -20,8 +19,11 @@
     {
         this.FoodInitialization();
         this.SnakesInitialization();
-        this.ControlInitialization(this.snakes, this.gameMode);
+        this.ControlInitialization(this.snakes);
         this.PlayerInitialization(this.snakes[0]);
+        
+        if(gameMode === "online")
+            this.HubInitialization();
     }
     
     FoodInitialization()
@@ -71,6 +73,33 @@
         gameZone.innerHTML += `<div class="score" id="score" style="
                     left: ${this.snakes[0].head.coordinates.X - document.documentElement.clientWidth / 2}px;
                     top: ${this.snakes[0].head.coordinates.Y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
+    }
+    
+    HubInitialization()
+    {
+        
+        hubConnection.on('Notify', function (connectionId, status) {
+
+            if (status === 1)
+                hubConnection.invoke('Send', { 'connectionId': "", 'snake': this.snakes[0]})
+            else {
+            }
+        });
+
+        hubConnection.on('Receive', function (enemy) {
+        });
+
+        hubConnection.start();
+        setTimeout(this.Send, 1000);
+    }
+    
+    Send()
+    {
+        let head = {direction: 45, coordinates: {X: 45, Y: 78}, height: 25, width: 25};
+        let body = {coordinates: [{X: 45, Y: 50}, {X: 79, Y: 80}, {X:100, Y:78}], height: 25, width: 25};
+        let snake = {head: head, body: body};
+        
+        hubConnection.invoke('Send', { 'connectionId': "", 'snake': snake});
     }
 
     IsEaten(head, index)

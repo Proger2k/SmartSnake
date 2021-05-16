@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6a61e5ea-3d39-4883-8232-f6da6cd51cae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/SmartSnake.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/ref/SmartSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/bin/Debug/net5.0/ref/SmartSnake.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/SmartSnake.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/ref/SmartSnake.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/obj/Debug/net5.0/ref/SmartSnake.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/wwwroot/js/Engine/Models/Game/Board.js" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/wwwroot/js/Engine/Models/Game/Board.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/wwwroot/js/Engine/Models/Game/Interval.js" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/wwwroot/js/Engine/Models/Game/Interval.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/wwwroot/js/PlayOnline/Init.js" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/wwwroot/js/PlayOnline/Init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartSnake/wwwroot/js/PlayWithBots/Init.js" beforeDir="false" afterPath="$PROJECT_DIR$/SmartSnake/wwwroot/js/PlayWithBots/Init.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1sd8ATIeHBSjfheZPdS60wcLeot" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a61e5ea-3d39-4883-8232-f6da6cd51cae" name="Default Changelist" comment="" />
+      <created>1621190968027</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621190968027</updated>
+      <workItem from="1621190973175" duration="14000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
