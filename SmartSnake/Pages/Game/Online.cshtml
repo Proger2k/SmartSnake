@@ -1,0 +1,24 @@
+﻿@page
+@model SmartSnake.Pages.Game.Online
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Online";
+}
+
+<div class="game-zone">
+</div>
+
+<a asp-page="Restart" asp-route-score="0" id="restart_link" style="display: none;"></a>
+
+<script src="~/js/Engine/Controllers/SnakeController.js"></script>
+<script src="~/js/Engine/Models/Snake/Head.js"></script>
+<script src="~/js/Engine/Models/Snake/Body.js"></script>
+<script src="~/js/Engine/Models/Snake/Snake.js"></script>
+<script src="~/js/Engine/Models/Food/Food.js"></script>
+<script src="~/js/Engine/Models/Food/Apple.js"></script>
+<script src="~/js/Engine/Models/Food/Pineapple.js"></script>
+<script src="~/js/Engine/Models/Game/Interval.js"></script>
+<script src="~/js/Engine/Models/Player/Player.js"></script>
+<script src="~/js/Engine/Models/Game/Board.js"></script>
+<script src="~/js/PlayWithBots/Init.js"></script>

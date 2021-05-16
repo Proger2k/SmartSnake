@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\js\PlayOnline" />
     <Folder Include="wwwroot\sprites\" />
   </ItemGroup>
 
