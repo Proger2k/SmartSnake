@@ -78,3 +78,4 @@ C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Account
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Game\GameWithBots.cshtml.g.cs
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Game\Restart.cshtml.g.cs
 C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Game\Online.cshtml.g.cs
+C:\Users\Home\Desktop\SmartSnake\SmartSnake\obj\Debug\net5.0\Razor\Pages\Game\Rating.cshtml.g.cs
