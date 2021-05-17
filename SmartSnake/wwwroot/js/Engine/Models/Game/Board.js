@@ -21,21 +21,23 @@
 
     Initialization()
     {
-        this.FoodInitialization();
-        this.SnakesInitialization();
-        this.ControlInitialization(this.snakes);
-        this.PlayerInitialization(this.snakes[0]);
-        
-        if(gameMode === "online") 
+        if(gameMode === "online")
         {
             let hub = new Hub(this);
             hub.HubInitialization();
+        }
+        else 
+        {
+            this.FoodInitialization();
+            this.SnakesInitialization();
+            this.ControlInitialization(this.snakes);
+            this.PlayerInitialization(this.snakes[0]);
         }
     }
     
     FoodInitialization()
     {
-        let apple = new Apple(23, 20);
+        let apple = new Apple(-1,23, 20, null);
         apple.Initialization(this.apples, this.width, this.height);
     }
     
@@ -86,10 +88,10 @@
     {
         for(let i = 0; i < this.numberOfApples; i++)
         {
-            let top1 = this.apples[i].Y;
-            let bottom1 = this.apples[i].Y + this.apples[i].height;
-            let left1 = this.apples[i].X;
-            let right1 = this.apples[i].X + this.apples[i].width;
+            let top1 = this.apples[i].coordinates.Y;
+            let bottom1 = this.apples[i].coordinates.Y + this.apples[i].height;
+            let left1 = this.apples[i].coordinates.X;
+            let right1 = this.apples[i].coordinates.X + this.apples[i].width;
 
             let top2 = head.coordinates.Y;
             let bottom2 = head.coordinates.Y + head.height;
@@ -98,8 +100,7 @@
             
             if(this.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
             {
-                this.apples[i].el = document.getElementById(`apple ${i}`);
-                this.RedrawingTheApple(this.apples[i]);
+                this.RedrawingTheApple(this.apples[i], i);
                 this.IncreaseTheSizeOfTheSnake(index, 1);
             }
         }
@@ -108,10 +109,10 @@
         {
             if(this.pineaples[i] === null)
                 continue;
-            let top1 = this.pineaples[i].Y;
-            let bottom1 = this.pineaples[i].Y + this.pineaples[i].height;
-            let left1 = this.pineaples[i].X;
-            let right1 = this.pineaples[i].X + this.pineaples[i].width;
+            let top1 = this.pineaples[i].coordinates.Y;
+            let bottom1 = this.pineaples[i].coordinates.Y + this.pineaples[i].height;
+            let left1 = this.pineaples[i].coordinates.X;
+            let right1 = this.pineaples[i].coordinates.X + this.pineaples[i].width;
 
             let top2 = head.coordinates.Y;
             let bottom2 = head.coordinates.Y + head.height;
@@ -157,16 +158,18 @@
             || (right1 >= right2 - 5 && left1 <= right2 && bottom1 >= bottom2 - 5 && top1 <= bottom2 - 5);
     }
 
-    RedrawingTheApple(apple)
+    RedrawingTheApple(apple, index)
     {
         let x = this.GetRandomArbitrary(160, width - 200);
         let y = this.GetRandomArbitrary(150, height - 200);
 
-        apple.X = x;
-        apple.Y = y;
+        apple.coordinates.X = x;
+        apple.coordinates.Y = y;
 
-        apple.el.style.left = `${x}px`;
-        apple.el.style.top = `${y}px`;
+        let el = document.getElementById(`apple ${index}`);
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
     }
 
     IncreaseTheSizeOfTheSnake(index, score)
@@ -245,11 +248,9 @@
 
     RemoveSnake(head, body, index)
     {
-        let pineapple = new Pineapple(40, 26);
-        pineapple.X = head.coordinates.X;
-        pineapple.Y = head.coordinates.Y;
+        let pineapple = new Pineapple(this.pineaples.length,40, 26, {X: head.coordinates.X, Y: head.coordinates.Y});
         this.pineaples.push(pineapple);
-        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineaples.length - 1}" style="left: ${pineapple.X}px; top: ${pineapple.Y}px;"></div>`
+        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineaples.length - 1}" style="left: ${pineapple.coordinates.X}px; top: ${pineapple.coordinates.Y}px;"></div>`
 
         
         if(index === 0)

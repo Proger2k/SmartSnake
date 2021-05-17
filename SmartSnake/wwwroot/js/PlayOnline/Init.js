@@ -2,6 +2,7 @@
 let gameZone = document.querySelector('.game-zone')
 
 let gameMode = "online";
+let isStarted = false;
 let numberOfSnakes = 1;
 let snakeLength = 10;
 let snakeSpeed = 3;

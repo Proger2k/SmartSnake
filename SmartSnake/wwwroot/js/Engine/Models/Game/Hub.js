@@ -9,6 +9,9 @@
     {
         this.Notify(this.board);
         this.ReceiveSnake(this.board);
+        this.ReceiveApples();
+        this.ReceiveApple();
+        this.ReceivePineapple();
 
         hubConnection.start();
     }
@@ -46,7 +49,6 @@
     {
         hubConnection.on('ReceiveSnake', function (enemy)
         {
-            console.log(board.users);
             let isFound = false;
             if(board.users.length !== 0)
             {
@@ -92,6 +94,49 @@
                     }
                 }
             }
+        });
+    }
+
+    ReceiveApples()
+    {
+        hubConnection.on('ReceiveApples', function (apples)
+        {
+            for(let i = 0; i < apples.length; i++)
+            {
+                gameZone.innerHTML += `<div class="apple" id="apple ${apples[i].index}"
+                                            style="left: ${apples[i].coordinates.x}px;
+                                             top: ${apples[i].coordinates.y}px;"></div>`
+            }
+        });
+    }
+
+    ReceiveApple()
+    {
+        hubConnection.on('ReceiveApple', function (apple)
+        {
+            let el = document.getElementById(`apple ${apple.index}`);
+            el.style.left = `${apple.coordinates.x}px`;
+            el.style.top = `${apple.coordinates.y}px`;
+        });
+    }
+
+    ReceivePineapple()
+    {
+        hubConnection.on('ReceivePineapple', function (pineapple)
+        {
+            let el = document.getElementById(`pineapple ${pineapple.index}`);
+            el.parentNode.removeChild(el);
+        });
+    }
+
+    BeginningOfTheGame()
+    {}
+
+    GenerateApples()
+    {
+        hubConnection.on('GenerateApples', function ()
+        {
+            
         });
     }
 }

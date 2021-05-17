@@ -1,12 +1,11 @@
 ﻿class Food
 {
-    constructor(height, width)
+    constructor(index, height, width, coordinates)
     {
+        this.index = index;
+        this.coordinates = coordinates;
         this.height = height;
         this.width = width;
-        this.X = null;
-        this.Y = null;
-        this.el = null;
     }
 
     GetRandomArbitrary(min, max) 
