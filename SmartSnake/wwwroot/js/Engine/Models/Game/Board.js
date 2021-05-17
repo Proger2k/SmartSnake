@@ -403,7 +403,10 @@
     GameOver()
     {
         let link = document.getElementById("restart_link");
-        link.href = "/Game/Restart?score=" + `${this.Player.score}`;
+        if(gameMode === "single")
+            link.href = "/Game/Single/Restart?score=" + `${this.Player.score}`;
+        else
+            link.href = "/Game/Online/Restart?score=" + `${this.Player.score}`;
         link.click();
     }
 }

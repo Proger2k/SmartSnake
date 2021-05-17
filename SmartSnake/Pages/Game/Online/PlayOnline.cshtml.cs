@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SmartSnake.Pages.Game
+namespace SmartSnake.Pages.Game.Online
 {
-    public class Online : PageModel
+    public class PlayOnline : PageModel
     {
         public void OnGet()
         {
