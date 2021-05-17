@@ -9,10 +9,5 @@ namespace SmartSnake.Pages.Game.Online
         {
             Score = score;
         }
-        
-        public void OnGet()
-        {
-            
-        }
     }
 }
