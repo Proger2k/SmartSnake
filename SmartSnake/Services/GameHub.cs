@@ -19,6 +19,7 @@ namespace SmartSnake
         public override async Task OnConnectedAsync()
         {
             await Clients.Others.SendAsync("Notify", $"{Context.ConnectionId}", "1");
+            await Clients.Caller.SendAsync("Notify", $"{Context.ConnectionId}", "0");
             await base.OnConnectedAsync();
         }
 

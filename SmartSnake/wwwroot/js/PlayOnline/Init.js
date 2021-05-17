@@ -24,5 +24,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/game")
     .build();
 
+let isConnected = false;
+
 board.Initialization();
 

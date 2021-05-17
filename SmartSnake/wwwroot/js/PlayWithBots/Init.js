@@ -20,4 +20,6 @@ let board = new Board(
     height
 );
 
+let isConnected = false;
+
 board.Initialization();

@@ -37,6 +37,22 @@
             window.scrollTo(this.coordinates.X - document.documentElement.clientWidth /2,
                 this.coordinates.Y - document.documentElement.clientHeight /2);
         
+        if(gameMode === "online" && isConnected)
+        {
+            let head = {direction: this.direction,
+                coordinates: {X: this.coordinates.X, Y: this.coordinates.Y},
+                height: this.height,
+                width: this.width};
+
+            let snakeBody = {coordinates: body.coordinates,
+                height: body.height,
+                width: body.width};
+
+            let snake = {head: head, body: snakeBody};
+
+            hubConnection.invoke('Send', { 'connectionId': "", 'snake': snake});
+        }
+        
         board.IsEaten(this, index);
         board.Crashed(this, body, index);
     }
