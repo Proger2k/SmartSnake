@@ -8,7 +8,7 @@
     HubInitialization()
     {
         this.Notify(this.board);
-        this.Receive(this.board);
+        this.ReceiveSnake(this.board);
 
         hubConnection.start();
     }
@@ -30,7 +30,7 @@
 
                 let snake = {head: head, body: body};
 
-                hubConnection.invoke('Send', { 'connectionId': "", 'snake': snake});
+                hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': snake});
             }
             else if(status === "0")
             {
@@ -42,9 +42,9 @@
         });
     }
 
-    Receive(board)
+    ReceiveSnake(board)
     {
-        hubConnection.on('Receive', function (enemy)
+        hubConnection.on('ReceiveSnake', function (enemy)
         {
             console.log(board.users);
             let isFound = false;

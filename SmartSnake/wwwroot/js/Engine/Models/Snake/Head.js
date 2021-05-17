@@ -50,7 +50,7 @@
 
             let snake = {head: head, body: snakeBody};
 
-            hubConnection.invoke('Send', { 'connectionId': "", 'snake': snake});
+            hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': snake});
         }
         
         board.IsEaten(this, index);

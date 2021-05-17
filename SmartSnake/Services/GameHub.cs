@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using SmartSnake.Models;
+using SmartSnake.Models.Apple;
 
 namespace SmartSnake
 {
@@ -10,10 +11,25 @@ namespace SmartSnake
     [Authorize]
     public class GameHub : Hub
     {
-        public async Task Send(GameHubModel model)
+        public async Task SendSnake(GameHubModel model)
         {
             model.ConnectionId = Context.ConnectionId;
-            await Clients.Others.SendAsync("Receive", model);
+            await Clients.Others.SendAsync("ReceiveSnake", model);
+        }
+
+        public async Task SendApples(Apple[] apples)
+        {
+            await Clients.Others.SendAsync("ReceiveApples", apples);
+        }
+
+        public async Task SendApple(Apple apple)
+        {
+            await Clients.Others.SendAsync("ReceiveApple", apple);
+        }
+
+        public async Task SendPineapple(Pineapple pineapple)
+        {
+            await Clients.Others.SendAsync("ReceivePineapple", pineapple);
         }
 
         public override async Task OnConnectedAsync()
