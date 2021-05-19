@@ -104,12 +104,28 @@
                     head.style.left = `${enemy.snake.head.coordinates.x}px`;
                     head.style.top = `${enemy.snake.head.coordinates.y}px`;
                     head.style.transform =  `rotate(${enemy.snake.head.direction})`;
-
+                    
                     for(let i = 0; i < enemy.snake.body.coordinates.length; i++)
                     {
                         let el = document.getElementById(`${enemy.connectionId} body ${i}`);
-                        el.style.left = `${enemy.snake.body.coordinates[i].x}px`;
-                        el.style.top = `${enemy.snake.body.coordinates[i].y}px`;
+                        if(el === null)
+                        {
+                            gameZone.innerHTML += `<div class="enemy_body" id="${enemy.connectionId} body ${i}"
+                                        style="left: ${enemy.snake.body.coordinates[i].x}px;
+                                               top: ${enemy.snake.body.coordinates[i].y}px;"></div>`
+
+                            head = document.getElementById(`${enemy.connectionId} head`);
+                            head.parentNode.removeChild(head);
+                            gameZone.innerHTML += `<div class="enemy_head" id="${enemy.connectionId} head"
+                                    style="left: ${enemy.snake.head.coordinates.x}px;     
+                                           top: ${enemy.snake.head.coordinates.y}px;
+                                           transform: rotate(${enemy.snake.head.direction*180/(Math.PI/2)}deg);"></div>`
+                        }
+                        else
+                        {
+                            el.style.left = `${enemy.snake.body.coordinates[i].x}px`;
+                            el.style.top = `${enemy.snake.body.coordinates[i].y}px`;   
+                        }
                     }
                 }
             }
