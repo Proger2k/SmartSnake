@@ -67,7 +67,7 @@ namespace SmartSnake
             {
                 users = new HashSet<string> {playerConnection.ConnectionId};
                 Context.Items.Add("users", users);
-                Context.Items.Add("isStarted", playerConnection.IsGameBegun);
+                Context.Items.Add("isStarted", false);
             }
             else
             {
@@ -77,22 +77,20 @@ namespace SmartSnake
                     users.Add(playerConnection.ConnectionId);
                     Context.Items["users"] = users;
                 }
+            }
 
-                if (Context.Items.Keys.FirstOrDefault(x => x.ToString() == "isStarted") != null)
+            if (Context.Items["isStarted"] != null)
+            {
+                if (users != null && users.Count == 3 && (bool)Context.Items["isStarted"] == false && !playerConnection.IsGameBegun)
                 {
-                    Context.Items["isStarted"] = playerConnection.IsGameBegun;
+                    Context.Items["isStarted"] = true;
+                    await Clients.Caller.SendAsync("BeginningOfTheGame");
                 }
-            }
-
-            if (users != null && users.Count == 3 && (bool)Context.Items["isStarted"] == false && !playerConnection.IsGameBegun)
-            {
-                Context.Items["isStarted"] = true;
-                await Clients.Caller.SendAsync("BeginningOfTheGame");
-            }
-            else if (!(bool)Context.Items["isStarted"] == false && playerConnection.IsGameBegun)
-            {
-                Context.Items["isStarted"] = true;
-                await Clients.Caller.SendAsync("ConnectToTheGame");
+                else if ((bool)Context.Items["isStarted"] == false && playerConnection.IsGameBegun)
+                {
+                    Context.Items["isStarted"] = true;
+                    await Clients.Caller.SendAsync("ConnectToTheGame");
+                }
             }
         }
 

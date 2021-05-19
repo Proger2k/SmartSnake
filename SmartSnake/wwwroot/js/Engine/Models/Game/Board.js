@@ -10,12 +10,16 @@
         this.width = width;
         this.height = height;
         this.snakes = new Array(this.numberOfSnakes);
-        this.apples = new Array(this.numberOfApples);
         this.pineaples = new Array(0);
         this.Player = null;
         if(gameMode === "online")
         {
             this.users = new Array(0);
+            this.apples = new Array(0);
+        }
+        else 
+        {
+            this.apples = new Array(this.numberOfApples);
         }
     }
 

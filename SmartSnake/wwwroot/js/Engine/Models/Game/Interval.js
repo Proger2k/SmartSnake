@@ -15,19 +15,22 @@
                     {
                         this.BotMovement(this.snakes[i]);
                     }
-                }, fps * 100)
+                }, fps * 100);
+                
+                this.snakeMove = setInterval(() => {
+                    for(let i = 0; i < this.snakes.length; i++)
+                    {
+                        if(this.snakes[i] !== undefined)
+                            this.snakes[i].body.Move(this.snakes[i].direction, this.snakes[i].index);
+                    }
+                }, fps);
                 break;
             case "online":
+                this.snakeMove = setInterval(() => {
+                    this.snakes[0].body.Move(this.snakes[0].direction, this.snakes[0].index);
+                }, fps);
                 break;
         }
-        
-        this.snakeMove = setInterval(() => {
-            for(let i = 0; i < this.snakes.length; i++)
-            {
-                if(this.snakes[i] !== undefined)
-                    this.snakes[i].body.Move(this.snakes[i].direction, this.snakes[i].index);
-            }
-        }, fps);
     }
 
     BotMovement(snake)
