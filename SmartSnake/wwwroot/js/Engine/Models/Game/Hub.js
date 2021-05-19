@@ -172,8 +172,12 @@
 
     ReceiveApple()
     {
+        let context = this;
         hubConnection.on('ReceiveApple', function (index, x, y)
         {
+            context.board.apples[index].coordinates.X = x;
+            context.board.apples[index].coordinates.Y = y;
+
             let el = document.getElementById(`apple ${index}`);
             el.style.left = `${x}px`;
             el.style.top = `${y}px`;
