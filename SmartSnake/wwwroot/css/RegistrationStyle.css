@@ -79,17 +79,18 @@ body {
 	height: 70px;
 	margin: 20px auto;
 	background: transparent;
-	border: 2px solid #fff;
+	border: 2px solid #00f2ff;
 	border-radius: 50px;
-	color: #FFF;
+	color: #00f2ff;
 	text-transform: uppercase;
 	font-weight: bold;
 	cursor: pointer;
 	transition: .3s;
 }
 	.form__btn__menu:hover {
-		background-color: #ED4C67;
-		border-color: #ED4C67;
+		color: #111;
+		background: #00f2ff;
+		box-shadow: 0 0 40px #00f2ff;
 	}
 	
 	.form__btn__menu:focus {
@@ -101,9 +102,9 @@ body {
 	height: 40px;
 	margin: 20px auto;
 	background: transparent;
-	border: 2px solid #fff;
+	border: 2px solid #00f2ff;
 	border-radius: 50px;
-	color: #FFF;
+	color: #00f2ff;
 	text-transform: uppercase;
 	font-weight: bold;
 	cursor: pointer;
@@ -111,8 +112,9 @@ body {
 }
 
 	.form__btn:hover {
-		background-color: #ED4C67;
-		border-color: #ED4C67;
+		color: #111;
+		background: #00f2ff;
+		box-shadow: 0 0 40px #00f2ff;
 	}
 
 	.form__btn:focus {
@@ -122,7 +124,7 @@ body {
 .form__help a {
 	text-decoration: none;
 	font-weight: bold;
-	color: #ED4C67;
+	color: #00f2ff;
 	transition: .3s;
 }
 

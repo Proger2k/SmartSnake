@@ -5,6 +5,7 @@
     padding: 0;
     margin: 0;
     background-image: url("../sprites/background.png");
+    background-color:rgba(0,0,0,.3);
     background-size: 100%;
 }
 
@@ -27,6 +28,8 @@
     height: 25px;
     background-image: url(../sprites/Head.png);
     background-repeat: no-repeat;
+    border-radius: 20%;
+    box-shadow: 0 0 50px #00f2ff;
 }
 
 .body {
@@ -35,6 +38,8 @@
     height: 25px;
     background-image: url(../sprites/body.png);
     background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00f2ff;
 }
 
 .enemy_head{
@@ -43,6 +48,8 @@
     height: 25px;
     background-image: url(../sprites/EnemyHead.png);
     background-repeat: no-repeat;
+    border-radius: 20%;
+    box-shadow: 0 0 50px red;
 }
 
 .enemy_body {
@@ -51,6 +58,8 @@
     height: 25px;
     background-image: url(../sprites/EnemyBody.png);
     background-repeat: no-repeat;
+    border-radius: 50%;
+    box-shadow: 0 0 10px red;
 }
 
 
@@ -61,6 +70,7 @@
     height: 23px;
     background-image: url(../sprites/apple.jpg);
     background-repeat: no-repeat;
+    box-shadow: 0 0 50px red;
 }
 
 .pineapple{
@@ -68,5 +78,6 @@
     width: 26px;
     height: 40px;
     background-image: url(../sprites/Pineapple.png);
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
+    box-shadow: 0 0 50px yellow;
 }
