@@ -90,7 +90,7 @@
         else 
             context = this;
         
-        for(let i = 0; i < context.numberOfApples; i++)
+        for(let i = 0; i < context.apples.length; i++)
         {
             let top1 = context.apples[i].coordinates.Y;
             let bottom1 = context.apples[i].coordinates.Y + context.apples[i].height;
@@ -171,7 +171,7 @@
         apple.coordinates.Y = y;
         
         if(gameMode === "online")
-            hubConnection.invoke('SendApple', { 'apple': apple});
+            hubConnection.invoke('SendApple', index, x, y);
 
         let el = document.getElementById(`apple ${index}`);
 

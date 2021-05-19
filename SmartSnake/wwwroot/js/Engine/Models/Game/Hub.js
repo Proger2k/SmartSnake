@@ -138,11 +138,11 @@
 
     ReceiveApple()
     {
-        hubConnection.on('ReceiveApple', function (apple)
+        hubConnection.on('ReceiveApple', function (index, x, y)
         {
-            let el = document.getElementById(`apple ${apple.index}`);
-            el.style.left = `${apple.coordinates.x}px`;
-            el.style.top = `${apple.coordinates.y}px`;
+            let el = document.getElementById(`apple ${index}`);
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
         });
     }
 
@@ -240,7 +240,7 @@
         let apple6 = new Apple(5, 25, 25, {X: 888, Y: 333});
         let apple7 = new Apple(6, 25, 25, {X: 777, Y: 555});
         let apple8 = new Apple(7, 25, 25, {X: 333, Y: 333});
-        let apple9 = new Apple(8, 25, 25, {X: 2222, Y: 2999});
+        let apple9 = new Apple(8, 25, 25, {X: 2222, Y: 2400});
         let apple10 = new Apple(9, 25, 25, {X: 789, Y: 456});
         let apple11 = new Apple(10, 25, 25, {X: 654, Y: 321});
         let apple12 = new Apple(11, 25, 25, {X: 480, Y: 781});
@@ -251,7 +251,7 @@
         let apple17 = new Apple(16, 25, 25, {X: 789, Y: 565});
         let apple18 = new Apple(17, 25, 25, {X: 3333, Y: 2222});
         let apple19 = new Apple(18, 25, 25, {X: 3000, Y: 2000});
-        let apple20 = new Apple(19, 25, 25, {X: 3500, Y: 3000});
+        let apple20 = new Apple(19, 25, 25, {X: 3500, Y: 2500});
         context.board.apples.push(apple1, apple2, apple3, apple4, apple5,
             apple6, apple7, apple8, apple9, apple10,
             apple11, apple12, apple13, apple14, apple15,

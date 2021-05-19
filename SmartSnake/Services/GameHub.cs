@@ -24,9 +24,9 @@ namespace SmartSnake
             await Clients.Others.SendAsync("ReceiveApples", apples);
         }
 
-        public async Task SendApple(Apple apple)
+        public async Task SendApple(int index, double x, double y)
         {
-            await Clients.Others.SendAsync("ReceiveApple", apple);
+            await Clients.Others.SendAsync("ReceiveApple", index, x, y);
         }
 
         public async Task SendPineapples(Pineapple pineapples)
