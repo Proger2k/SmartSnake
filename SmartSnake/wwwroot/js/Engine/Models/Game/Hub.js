@@ -283,18 +283,18 @@
         }
 
         let body = new Body(head, coordinatesBody, 25, 25);
-        let snake = new Snake(head, body, -1);
+        let snake = new Snake(head, body, 0);
 
         context.board.Player = new Player(snake);
 
         for(let i = 0; i < context.board.Player.snake.body.coordinates.length; i++)
         {
-            gameZone.innerHTML += `<div class="body" id="${-1} body ${i}"
+            gameZone.innerHTML += `<div class="body" id="${0} body ${i}"
                                         style="left: ${context.board.Player.snake.body.coordinates[i].X}px;
                                                top: ${context.board.Player.snake.body.coordinates[i].Y}px;"></div>`
         }
 
-        gameZone.innerHTML += `<div class="head" id="${-1} head"
+        gameZone.innerHTML += `<div class="head" id="${0} head"
                                     style="left: ${context.board.Player.snake.head.coordinates.X}px;     
                                            top: ${context.board.Player.snake.head.coordinates.Y}px;
                                            transform: rotate(${context.board.Player.snake.head.direction*180/(Math.PI/2)}deg);"></div>`
