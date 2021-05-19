@@ -1,8 +1,9 @@
 ﻿class  Interval
 {
-    constructor(snakes)
+    constructor(snakes, context = null)
     {
         this.snakes = snakes;
+        this.context = context;
     }
 
     Move()
@@ -26,6 +27,7 @@
                 }, fps);
                 break;
             case "online":
+                board.context = this.context;
                 this.snakeMove = setInterval(() => {
                     this.snakes[0].body.Move(this.snakes[0].direction, this.snakes[0].index);
                 }, fps);

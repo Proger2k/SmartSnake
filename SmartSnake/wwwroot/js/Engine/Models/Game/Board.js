@@ -12,15 +12,9 @@
         this.snakes = new Array(this.numberOfSnakes);
         this.pineaples = new Array(0);
         this.Player = null;
-        if(gameMode === "online")
-        {
-            this.users = new Array(0);
-            this.apples = new Array(0);
-        }
-        else 
-        {
-            this.apples = new Array(this.numberOfApples);
-        }
+        this.context = null;
+        this.users = new Array(0);
+        this.apples = new Array(this.numberOfApples);
     }
 
     Initialization()
@@ -71,9 +65,9 @@
         }
     }
 
-    ControlInitialization(snakes, gameMode)
+    ControlInitialization(snakes)
     {
-        let interval = new Interval(snakes, gameMode);
+        let interval = new Interval(snakes);
         interval.Move();
 
         let snakeController = new SnakeController(snakes[0]);
@@ -90,33 +84,39 @@
     
     IsEaten(head, index)
     {
-        for(let i = 0; i < this.numberOfApples; i++)
+        let context;
+        if(gameMode === "online")
+            context = this.context;
+        else 
+            context = this;
+        
+        for(let i = 0; i < context.numberOfApples; i++)
         {
-            let top1 = this.apples[i].coordinates.Y;
-            let bottom1 = this.apples[i].coordinates.Y + this.apples[i].height;
-            let left1 = this.apples[i].coordinates.X;
-            let right1 = this.apples[i].coordinates.X + this.apples[i].width;
+            let top1 = context.apples[i].coordinates.Y;
+            let bottom1 = context.apples[i].coordinates.Y + context.apples[i].height;
+            let left1 = context.apples[i].coordinates.X;
+            let right1 = context.apples[i].coordinates.X + context.apples[i].width;
 
             let top2 = head.coordinates.Y;
             let bottom2 = head.coordinates.Y + head.height;
             let left2 = head.coordinates.X;
             let right2 = head.coordinates.X + head.width;
             
-            if(this.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
+            if(context.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
             {
-                this.RedrawingTheApple(this.apples[i], i);
-                this.IncreaseTheSizeOfTheSnake(index, 1);
+                context.RedrawingTheApple(context.apples[i], i);
+                context.IncreaseTheSizeOfTheSnake(index, 1);
             }
         }
 
-        for(let i = 0; i < this.pineaples.length; i++)
+        for(let i = 0; i < context.pineaples.length; i++)
         {
             if(this.pineaples[i] === null)
                 continue;
-            let top1 = this.pineaples[i].coordinates.Y;
-            let bottom1 = this.pineaples[i].coordinates.Y + this.pineaples[i].height;
-            let left1 = this.pineaples[i].coordinates.X;
-            let right1 = this.pineaples[i].coordinates.X + this.pineaples[i].width;
+            let top1 = context.pineaples[i].coordinates.Y;
+            let bottom1 = context.pineaples[i].coordinates.Y + context.pineaples[i].height;
+            let left1 = context.pineaples[i].coordinates.X;
+            let right1 = context.pineaples[i].coordinates.X + context.pineaples[i].width;
 
             let top2 = head.coordinates.Y;
             let bottom2 = head.coordinates.Y + head.height;
@@ -127,9 +127,9 @@
             {
                 let el = document.getElementById(`pineapple ${i}`);
                 el.parentElement.removeChild(el);
-                this.pineaples[i] = null;
-                
-                this.IncreaseTheSizeOfTheSnake(index, 5);
+                context.pineaples[i] = null;
+
+                context.IncreaseTheSizeOfTheSnake(index, 5);
             }
         }
         
@@ -150,7 +150,7 @@
                 y = 2120;
             score.style.left = x + 'px';
             score.style.top = y + 'px';
-            score.innerText = "Your score: " + this.Player.score;
+            score.innerText = "Your score: " + context.Player.score;
         }
     }
     
@@ -169,6 +169,9 @@
 
         apple.coordinates.X = x;
         apple.coordinates.Y = y;
+        
+        if(gameMode === "online")
+            hubConnection.invoke('SendApple', { 'apple': apple});
 
         let el = document.getElementById(`apple ${index}`);
 

@@ -123,7 +123,7 @@
         hubConnection.on('ReceiveApples', function (apples)
         {
             if(context.board.apples.length === 0)
-                context.board.apples = apples;
+                context.board.apples.push(apples);
             else
             {
                 for(let i = 0; i < apples.length; i++)
@@ -205,11 +205,10 @@
             context.GeneratePlayer(context);
             context.GenerateApples(context);
 
-            let snakes = new Array(1);
-            snakes[0] = context.board.Player.snake;
-            context.ControlInitialization(snakes);
+            context.board.snakes[0] = context.board.Player.snake;
+            context.ControlInitialization(context.board.snakes, context.board);
 
-            hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': context.Player.snake});
+            hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': context.board.Player.snake});
         });
     }
 
@@ -223,12 +222,11 @@
             context.GeneratePlayer(context);
             hubConnection.invoke('ReceiveApples');
             hubConnection.invoke('ReceivePineapples');
+            
+            context.snakes[0] = context.board.Player.snake;
+            context.ControlInitialization(context.board.snakes, context.board);
 
-            let snakes = new Array(1);
-            snakes[0] = context.board.Player.snake;
-            context.ControlInitialization(snakes);
-
-            hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': context.Player.snake});
+            hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': context.board.Player.snake});
         });
     }
     
@@ -298,11 +296,15 @@
                                     style="left: ${context.board.Player.snake.head.coordinates.X}px;     
                                            top: ${context.board.Player.snake.head.coordinates.Y}px;
                                            transform: rotate(${context.board.Player.snake.head.direction*180/(Math.PI/2)}deg);"></div>`
+
+        gameZone.innerHTML += `<div class="score" id="score" style="
+                    left: ${context.board.Player.snake.head.coordinates.X - document.documentElement.clientWidth / 2}px;
+                    top: ${context.board.Player.snake.head.coordinates.Y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
     }
 
-    ControlInitialization(snakes)
+    ControlInitialization(snakes, context)
     {
-        let interval = new Interval(snakes, "online");
+        let interval = new Interval(snakes, context);
         interval.Move();
 
         let snakeController = new SnakeController(snakes[0]);
