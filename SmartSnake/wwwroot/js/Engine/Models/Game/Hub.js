@@ -7,9 +7,9 @@
 
     HubInitialization()
     {
-        this.Notify(this.board);
+        this.Notify(this);
         this.ReceiveUser();
-        this.ReceiveSnake(this.board);
+        this.ReceiveSnake(this);
         this.ReceiveApples();
         this.ReceiveApple();
         this.ReceivePineapple();
@@ -22,7 +22,7 @@
         hubConnection.start();
     }
 
-    Notify(board)
+    Notify(context)
     {
         hubConnection.on('Notify', function (connectionId, status) {
             
@@ -34,14 +34,14 @@
             
             if (status === "1" && isStarted)
             {
-                let head = {direction: board.Player.snake.head.direction,
-                    coordinates: {X: board.Player.snake.head.coordinates.X, Y: board.Player.snake.head.coordinates.Y},
-                    height: board.Player.snake.head.height,
-                    width: board.Player.snake.head.width};
+                let head = {direction: context.board.Player.snake.head.direction,
+                    coordinates: {X: context.board.Player.snake.head.coordinates.X, Y: context.board.Player.snake.head.coordinates.Y},
+                    height: context.board.Player.snake.head.height,
+                    width: context.board.Player.snake.head.width};
 
-                let body = {coordinates: board.Player.snake.body.coordinates,
-                    height: board.Player.snake.body.height,
-                    width: board.Player.snake.body.width};
+                let body = {coordinates: context.board.Player.snake.body.coordinates,
+                    height: context.board.Player.snake.body.height,
+                    width: context.board.Player.snake.body.width};
 
                 let snake = {head: head, body: body};
 
@@ -53,6 +53,19 @@
             }
             else if (status === "-1" && isStarted)
             {
+                let head = document.getElementById(`${connectionId} head`);
+                head.parentNode.removeChild(head);
+                
+                let user = context.FindUser(context, connectionId);
+                let index = context.FindIndex(context, user);
+                
+                for(let i = 0; i < user.snake.body.coordinates.length; i++)
+                {
+                    let el = document.getElementById(`${connectionId} body ${i}`);
+                    el.parentNode.removeChild(el);
+                }
+
+                context.board.users.splice(index, 1);
             }
         });
     }
@@ -64,14 +77,14 @@
         })
     }
 
-    ReceiveSnake(board)
+    ReceiveSnake(context)
     {
         hubConnection.on('ReceiveSnake', function (enemy)
         {
             let isFound = false;
-            if(board.users.length !== 0)
+            if(context.board.users.length !== 0)
             {
-                isFound = board.users.find((element) => {
+                isFound = context.board.users.find((element) => {
                     if (element.connectionId === enemy.connectionId)
                         return true;
                 });
@@ -81,7 +94,7 @@
             {
                 let snake = new Snake(enemy.snake.head, enemy.snake.body, enemy.connectionId);
                 let user = new User(snake, enemy.connectionId);
-                board.users.push(user);
+                context.board.users.push(user);
 
                 for(let i = 0; i < snake.body.coordinates.length; i++)
                 {
@@ -101,6 +114,11 @@
                 if(head === undefined) {}
                 else
                 {
+                    let user = context.FindUser(context, enemy.connectionId);
+                    
+                    user.snake.head = enemy.snake.head;
+                    user.snake.body = enemy.snake.body;
+                    
                     head.style.left = `${enemy.snake.head.coordinates.x}px`;
                     head.style.top = `${enemy.snake.head.coordinates.y}px`;
                     head.style.transform =  `rotate(${enemy.snake.head.direction})`;
@@ -325,5 +343,27 @@
 
         let snakeController = new SnakeController(snakes[0]);
         snakeController.Movement();
+    }
+    
+    FindUser(context, connectionId)
+    {
+        for(let i = 0; i <context.board.users.length; i++)
+        {
+            if(context.board.users[i].connectionId === connectionId)
+            {
+                return context.board.users[i];
+            }
+        }
+    }
+    
+    FindIndex(context, user)
+    {
+        for(let i = 0; i <context.board.users.length; i++)
+        {
+            if(context.board.users[i] === user)
+            {
+                return i;
+            }
+        }
     }
 }
