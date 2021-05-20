@@ -1,3 +1,7 @@
+*{
+    cursor: url('../sprites/курсор.png'), pointer;
+}
+
 .game-zone {
     position: relative;
     height: 3000px;

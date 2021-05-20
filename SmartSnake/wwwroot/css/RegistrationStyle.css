@@ -1,3 +1,6 @@
+*{
+	cursor: url('../sprites/курсор.png'), pointer;
+}
 
 body {
 	background: url('../sprites/Фон.png') no-repeat center top / cover;
@@ -16,9 +19,11 @@ body {
 	letter-spacing: .05rem;
 	background: rgba(0,0,0,.5);
 	padding: 50px 40px;
+	box-shadow: 0 0 100px #00f2ff;
 }
 
 .form__title {
+	color: #00f2ff;
 	font-size: 30px;
 	text-transform: uppercase;
 	margin-bottom: 20px;
@@ -41,8 +46,8 @@ body {
 	}
 
 .form__input-wrapper_active:before {
-	background: #ED4C67;
-	box-shadow: 0 7px 15px 5px rgba(237, 76, 103,.8);
+	background: #00f2ff;
+	box-shadow: 0 7px 15px 5px #00f2ff;
 }
 
 .form__input {
@@ -62,16 +67,17 @@ body {
 
 .form__input-text {
 	position: absolute;
-	top: 25px;
+	top: 15px;
+	margin-bottom: 25px;
 	left: 0;
 	transition: .3s;
 	z-index: 1;
 }
 
 .form__input-text_active {
-	top: 9px;
+	top: 0px;
 	font-size: 12px;
-	color: #ED4C67;
+	color: #00f2ff;
 }
 
 .form__btn__menu{
@@ -99,7 +105,7 @@ body {
 
 .form__btn {
 	width: 300px;
-	height: 40px;
+	height: 50px;
 	margin: 20px auto;
 	background: transparent;
 	border: 2px solid #00f2ff;
@@ -107,7 +113,7 @@ body {
 	color: #00f2ff;
 	text-transform: uppercase;
 	font-weight: bold;
-	cursor: pointer;
+	cursor: url('../sprites/курсор.png'), pointer;
 	transition: .3s;
 }
 

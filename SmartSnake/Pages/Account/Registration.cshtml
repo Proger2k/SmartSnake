@@ -13,46 +13,50 @@
     <title>Registration</title>
 </head>
 <body>
-    <form class="form" method="post">
-        <h3 class="form__title">Registration</h3>
+<form class="form" method="post">
+    <h3 class="form__title">Registration</h3>
 
-        <div class="alert alert-danger" style="display:none;"></div>
+    <div class="alert alert-danger" style="display:none;"></div>
 
-        <div class="form__input-wrapper" data-input="input-1">
-            <input asp-for="Input.Name" type="text" class="form__input" data-input="input-1">
-            <p class="form__input-text" data-input="input-1">Name</p>
-            <span asp-validation-for="Input.Name"></span>
-        </div>
+    <div class="form__input-wrapper" data-input="input-1">
+        <input asp-for="Input.Name" type="text" class="form__input" data-input="input-1">
+        <p class="form__input-text" data-input="input-1">Name</p>
+        <span asp-validation-for="Input.Name"></span>
+    </div>
 
-        <div class="form__input-wrapper" data-input="input-1">
-            <input asp-for="Input.Email" type="email" class="form__input" data-input="input-1">
-            <p class="form__input-text" data-input="input-1">Email</p>
-            <span asp-validation-for="Input.Email"></span>
-        </div>
+    <div class="form__input-wrapper" data-input="input-1">
+        <input asp-for="Input.Email" type="email" class="form__input" data-input="input-1">
+        <p class="form__input-text" data-input="input-1">Email</p>
+        <span asp-validation-for="Input.Email"></span>
+    </div>
 
-        <div class="form__input-wrapper" data-input="input-1">
-            <input asp-for="Input.Year" type="text" class="form__input" data-input="input-1">
-            <p class="form__input-text" data-input="input-1">Age</p>
-            <span asp-validation-for="Input.Year"></span>
-        </div>
+    <div class="form__input-wrapper" data-input="input-1">
+        <input asp-for="Input.Year" type="text" class="form__input" data-input="input-1">
+        <p class="form__input-text" data-input="input-1">Age</p>
+        <span asp-validation-for="Input.Year"></span>
+    </div>
 
-        <div class="form__input-wrapper" data-input="input-1">
-            <input asp-for="Input.Password" type="password" class="form__input" data-input="input-1">
-            <p class="form__input-text" data-input="input-1">Password</p>
-            <span asp-validation-for="Input.Password"></span>
-        </div>
+    <div class="form__input-wrapper" data-input="input-1">
+        <input asp-for="Input.Password" type="password" class="form__input" data-input="input-1">
+        <p class="form__input-text" data-input="input-1">Password</p>
+        <span asp-validation-for="Input.Password"></span>
+    </div>
 
-        <div class="form__input-wrapper" data-input="input-1">
-            <input asp-for="Input.PasswordConfirm" type="password" class="form__input" data-input="input-1">
-            <p class="form__input-text" data-input="input-1">PasswordConfirm</p>
-            <span asp-validation-for="Input.PasswordConfirm"></span>
-        </div>
+    <div class="form__input-wrapper" data-input="input-1">
+        <input asp-for="Input.PasswordConfirm" type="password" class="form__input" data-input="input-1">
+        <p class="form__input-text" data-input="input-1">PasswordConfirm</p>
+        <span asp-validation-for="Input.PasswordConfirm"></span>
+    </div>
 
-        <button type="submit" class="form__btn" style="margin-top: 60px">Register</button>
+    <button type="submit" class="form__btn" style="margin-top: 60px">Register</button>
 
-        <p class="form__help">
-            If you already have an account <a asp-page="Login">Login</a>
-        </p>
-    </form>
+    <p class="form__help">
+        If you already have an account <a asp-page="Login">Login</a>
+    </p>
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/Register.js"></script>
+
 </body>
 </html>
