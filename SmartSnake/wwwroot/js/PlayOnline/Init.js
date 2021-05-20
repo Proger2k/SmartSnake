@@ -1,5 +1,6 @@
 ﻿fps = 1000/60;
 let gameZone = document.querySelector('.game-zone')
+gameZone.style.display = "none";
 
 let gameMode = "online";
 let isStarted = false;

@@ -66,15 +66,14 @@
     box-shadow: 0 0 10px red;
 }
 
-
-
 .apple{
     position: absolute;
     width: 20px;
     height: 23px;
     background-image: url(../sprites/apple.jpg);
     background-repeat: no-repeat;
-    box-shadow: 0 0 50px red;
+    border-radius: 100%;
+    box-shadow: 0 0 50px 15px red;
 }
 
 .pineapple{
@@ -83,5 +82,6 @@
     height: 40px;
     background-image: url(../sprites/Pineapple.png);
     background-repeat: no-repeat;
-    box-shadow: 0 0 50px yellow;
+    border-radius: 100%;
+    box-shadow: 0 0 50px 15px yellow;
 }
