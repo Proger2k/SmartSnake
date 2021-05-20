@@ -7,7 +7,8 @@
 }
 
 <link rel="stylesheet" href="~/css/loading.css">
-<div class="loading_wrapper">
+<div class="loading" id="loading">
+    <div class="loading_wrapper">
     <section>
         <div class="loader">
             <span style="--i:1;"></span>
@@ -32,12 +33,13 @@
             <span style="--i:20;"></span>
         </div>
     </section>
-     <form class="form" id="loading_form" method="POST">
+    <form class="form" id="loading_form" method="POST">
         <h4 class="form__title" style="margin-bottom: 150px">Поиск других игроков...</h4>
-         <div class="form__input-wrapper" data-input="input-1">
-             <button asp-page="/Index" type="submit" class="form__btn">Выйти в главное меню</button>
-         </div>
-     </form>
+        <div class="form__input-wrapper" data-input="input-1">
+            <button asp-page="/Index" type="submit" class="form__btn">Выйти в главное меню</button>
+        </div>
+    </form>
+</div>
 </div>
 <div class="game-zone">
 </div>

@@ -121,7 +121,7 @@
                     
                     head.style.left = `${enemy.snake.head.coordinates.x}px`;
                     head.style.top = `${enemy.snake.head.coordinates.y}px`;
-                    head.style.transform =  `rotate(${enemy.snake.head.direction})`;
+                    head.style.transform =  `rotate(${enemy.snake.head.direction*180/(Math.PI)}deg)`;
                     
                     for(let i = 0; i < enemy.snake.body.coordinates.length; i++)
                     {
@@ -239,6 +239,10 @@
 
         hubConnection.on('BeginningOfTheGame', function ()
         {
+            gameZone.style.display = "block";
+            let loading = document.getElementById("loading");
+            loading.style.display = "none";
+            
             isStarted = true;
             context.GeneratePlayer(context);
             context.GenerateApples(context);
@@ -256,6 +260,10 @@
         
         hubConnection.on('ConnectToTheGame', function ()
         {
+            gameZone.style.display = "block";
+            let loading = document.getElementById("loading");
+            loading.style.display = "none";
+            
             isStarted = true;
             context.GeneratePlayer(context);
             hubConnection.invoke('ReceiveApples');
