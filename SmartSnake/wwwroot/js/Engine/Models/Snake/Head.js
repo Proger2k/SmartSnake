@@ -24,23 +24,23 @@
         }
         let projectedHeadSpeed = this.CalculateProjectedSpeed();
         
-        this.coordinates.X += projectedHeadSpeed.Vx;
-        this.coordinates.Y += projectedHeadSpeed.Vy;
+        this.coordinates.x += projectedHeadSpeed.Vx;
+        this.coordinates.y += projectedHeadSpeed.Vy;
 
         this.el = document.getElementById(`${index} head`);
 
-        this.el.style.left = `${this.coordinates.X}px`;
-        this.el.style.top = `${this.coordinates.Y}px`;
+        this.el.style.left = `${this.coordinates.x}px`;
+        this.el.style.top = `${this.coordinates.y}px`;
         this.el.style.transform = `rotate(${this.direction*180/(Math.PI)}deg)`;
 
         if(index === 0)
-            window.scrollTo(this.coordinates.X - document.documentElement.clientWidth /2,
-                this.coordinates.Y - document.documentElement.clientHeight /2);
+            window.scrollTo(this.coordinates.x - document.documentElement.clientWidth /2,
+                this.coordinates.y - document.documentElement.clientHeight /2);
         
         if(gameMode === "online" && isConnected)
         {
             let head = {direction: this.direction,
-                coordinates: {X: this.coordinates.X, Y: this.coordinates.Y},
+                coordinates: {x: this.coordinates.x, y: this.coordinates.y},
                 height: this.height,
                 width: this.width};
 

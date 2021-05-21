@@ -49,12 +49,12 @@
             let y = this.GetRandomArbitrary(150, height - 200);
             let direction = this.GetRandomDirection();
 
-            let head = new Head(direction, this.snakeSpeed, this.headTurningSpeed, { X: x, Y: y });
+            let head = new Head(direction, this.snakeSpeed, this.headTurningSpeed, { x: x, y: y });
 
             let coordinatesBody = new Array(this.snakeLength);
             for(let i = 0; i < coordinatesBody.length; i++)
             {
-                coordinatesBody[i] = {X: x, Y: y};
+                coordinatesBody[i] = {x: x, y: y};
             }
 
             let body = new Body(head, coordinatesBody, 25, 25);
@@ -78,8 +78,8 @@
     {
         this.Player = new Player(snake);
         gameZone.innerHTML += `<div class="score" id="score" style="
-                    left: ${this.snakes[0].head.coordinates.X - document.documentElement.clientWidth / 2}px;
-                    top: ${this.snakes[0].head.coordinates.Y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
+                    left: ${this.snakes[0].head.coordinates.x - document.documentElement.clientWidth / 2}px;
+                    top: ${this.snakes[0].head.coordinates.y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
     }
     
     IsEaten(head, index)
@@ -92,15 +92,15 @@
         
         for(let i = 0; i < context.apples.length; i++)
         {
-            let top1 = context.apples[i].coordinates.Y;
-            let bottom1 = context.apples[i].coordinates.Y + context.apples[i].height;
-            let left1 = context.apples[i].coordinates.X;
-            let right1 = context.apples[i].coordinates.X + context.apples[i].width;
+            let top1 = context.apples[i].coordinates.y;
+            let bottom1 = context.apples[i].coordinates.y + context.apples[i].height;
+            let left1 = context.apples[i].coordinates.x;
+            let right1 = context.apples[i].coordinates.x + context.apples[i].width;
 
-            let top2 = head.coordinates.Y;
-            let bottom2 = head.coordinates.Y + head.height;
-            let left2 = head.coordinates.X;
-            let right2 = head.coordinates.X + head.width;
+            let top2 = head.coordinates.y;
+            let bottom2 = head.coordinates.y + head.height;
+            let left2 = head.coordinates.x;
+            let right2 = head.coordinates.x + head.width;
             
             if(context.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
             {
@@ -113,15 +113,15 @@
         {
             if(context.pineaples[i] === null)
                 continue;
-            let top1 = context.pineaples[i].coordinates.Y;
-            let bottom1 = context.pineaples[i].coordinates.Y + context.pineaples[i].height;
-            let left1 = context.pineaples[i].coordinates.X;
-            let right1 = context.pineaples[i].coordinates.X + context.pineaples[i].width;
+            let top1 = context.pineaples[i].coordinates.y;
+            let bottom1 = context.pineaples[i].coordinates.y + context.pineaples[i].height;
+            let left1 = context.pineaples[i].coordinates.x;
+            let right1 = context.pineaples[i].coordinates.x + context.pineaples[i].width;
 
-            let top2 = head.coordinates.Y;
-            let bottom2 = head.coordinates.Y + head.height;
-            let left2 = head.coordinates.X;
-            let right2 = head.coordinates.X + head.width;
+            let top2 = head.coordinates.y;
+            let bottom2 = head.coordinates.y + head.height;
+            let left2 = head.coordinates.x;
+            let right2 = head.coordinates.x + head.width;
 
             if(this.IsInTheArea(top1, bottom1, left1, right1, top2, bottom2, left2, right2))
             {
@@ -143,8 +143,8 @@
         if(index === 0)
         {
             let score = document.getElementById("score");
-            let x = head.coordinates.X - document.documentElement.clientWidth / 2;
-            let y = head.coordinates.Y - document.documentElement.clientHeight / 2;
+            let x = head.coordinates.x - document.documentElement.clientWidth / 2;
+            let y = head.coordinates.y - document.documentElement.clientHeight / 2;
             if(x < 0)
                 x = 0;
             else if (x > 2350)
@@ -174,8 +174,8 @@
         let x = this.GetRandomArbitrary(160, width - 200);
         let y = this.GetRandomArbitrary(150, height - 200);
 
-        apple.coordinates.X = x;
-        apple.coordinates.Y = y;
+        apple.coordinates.x = x;
+        apple.coordinates.y = y;
         
         if(gameMode === "online")
             hubConnection.invoke('SendApple', index, x, y);
@@ -197,8 +197,8 @@
             let el = document.getElementById(`${index} body ${i}`);
             el.id = `${index} body ${i+1}`;
             
-            this.snakes[massIndex].body.coordinates[i + 1] = {X: this.snakes[massIndex].body.coordinates[i].X,
-                                                            Y: this.snakes[massIndex].body.coordinates[i].Y};
+            this.snakes[massIndex].body.coordinates[i + 1] = {x: this.snakes[massIndex].body.coordinates[i].x,
+                                                            y: this.snakes[massIndex].body.coordinates[i].y};
         }
         
         let el = document.getElementById(`${index} body ${1}`);
@@ -213,46 +213,55 @@
 
     Crashed(head, body, index)
     {
-        let topHead = head.coordinates.Y;
-        let bottomHead = head.coordinates.Y + head.height;
-        let leftHead = head.coordinates.X;
-        let rightHead = head.coordinates.X + head.width;
+        let context;
+        
+        if(gameMode === "online")
+        {
+            context = this.context;
+        }
+        else
+            context = this;
+        
+        let topHead = head.coordinates.y;
+        let bottomHead = head.coordinates.y + head.height;
+        let leftHead = head.coordinates.x;
+        let rightHead = head.coordinates.x + head.width;
         
         if(rightHead >= 3810
         || leftHead <= 145 
         || topHead <= 110
         || bottomHead >= 2915) 
         {
-            this.RemoveSnake(head, body, index);
+            context.RemoveSnake(head, body, index);
             return;
         }
-        for(let i = 0; i < this.snakes.length; i++)
+        for(let i = 0; i < context.snakes.length; i++)
         {
-            if(i !== index && this.snakes[i] !== undefined)
+            if(i !== index && context.snakes[i] !== undefined)
             {
-                let topEnemyHead = this.snakes[i].head.coordinates.Y;
-                let bottomEnemyHead = this.snakes[i].head.coordinates.Y + head.height;
-                let leftEnemyHead = this.snakes[i].head.coordinates.X;
-                let rightEnemyHead = this.snakes[i].head.coordinates.X + head.width;
+                let topEnemyHead = context.snakes[i].head.coordinates.y;
+                let bottomEnemyHead = context.snakes[i].head.coordinates.y + head.height;
+                let leftEnemyHead = context.snakes[i].head.coordinates.x;
+                let rightEnemyHead = context.snakes[i].head.coordinates.x + head.width;
                 
-                if(this.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
+                if(context.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
                     topEnemyHead, bottomEnemyHead, leftEnemyHead, rightEnemyHead))
                 {
-                    this.RemoveSnake(head, body, index);
+                    context.RemoveSnake(head, body, index);
                     return;
                 }
                
                 for(let j = this.snakes[i].body.coordinates.length - 10; j >= 0; j -= 4)
                 {
-                    let topEnemyBody = this.snakes[i].body.coordinates[j].Y;
-                    let bottomEnemyBody = this.snakes[i].body.coordinates[j].Y + this.snakes[i].body.height;
-                    let leftEnemyBody = this.snakes[i].body.coordinates[j].X;
-                    let rightEnemyBody = this.snakes[i].body.coordinates[j].X + this.snakes[i].body.width;
+                    let topEnemyBody = context.snakes[i].body.coordinates[j].y;
+                    let bottomEnemyBody = context.snakes[i].body.coordinates[j].y + context.snakes[i].body.height;
+                    let leftEnemyBody = context.snakes[i].body.coordinates[j].x;
+                    let rightEnemyBody = context.snakes[i].body.coordinates[j].x + context.snakes[i].body.width;
 
-                    if(this.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
+                    if(context.IsInTheArea(topHead, bottomHead, leftHead, rightHead,
                         topEnemyBody, bottomEnemyBody, leftEnemyBody, rightEnemyBody))
                     {
-                        this.RemoveSnake(head, body, index);
+                        context.RemoveSnake(head, body, index);
                         return;
                     }
                 }
@@ -262,9 +271,9 @@
 
     RemoveSnake(head, body, index)
     {
-        let pineapple = new Pineapple(this.pineaples.length,40, 26, {X: head.coordinates.X, Y: head.coordinates.Y});
+        let pineapple = new Pineapple(this.pineaples.length,40, 26, {x: head.coordinates.x, y: head.coordinates.y});
         this.pineaples.push(pineapple);
-        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineaples.length - 1}" style="left: ${pineapple.coordinates.X}px; top: ${pineapple.coordinates.Y}px;"></div>`
+        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineaples.length - 1}" style="left: ${pineapple.coordinates.x}px; top: ${pineapple.coordinates.y}px;"></div>`
 
         
         if(index === 0)
@@ -289,20 +298,20 @@
             let x = this.GetRandomArbitrary(160, width - 200);
             let y = this.GetRandomArbitrary(150, height - 200);
 
-            head.coordinates.X = x;
-            head.coordinates.Y = y;
+            head.coordinates.x = x;
+            head.coordinates.y = y;
 
             head.el.style.left = x + 'px';
             head.el.style.top = y + "px";
             
             for(let i = 0; i < body.coordinates.length; i++)
             {
-                body.coordinates[i].X = x;
-                body.coordinates[i].Y = y;
+                body.coordinates[i].x = x;
+                body.coordinates[i].y = y;
                 
                 let el = document.getElementById(`${index} body ${i}`);
-                el.style.left = `${body.coordinates[i].X}px`;
-                el.style.top = `${body.coordinates[i].Y}px`;
+                el.style.left = `${body.coordinates[i].x}px`;
+                el.style.top = `${body.coordinates[i].y}px`;
             }
         }
     }
