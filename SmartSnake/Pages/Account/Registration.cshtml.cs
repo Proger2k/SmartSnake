@@ -52,7 +52,7 @@ namespace SmartSnake.Pages.Account
                 User user = new User {Name = Input.Name,
                     BestScore = 0,
                     Email = Input.Email,
-                    UserName = Input.Email,
+                    UserName = Input.Name,
                     Age = Input.Year,
                 };
                 

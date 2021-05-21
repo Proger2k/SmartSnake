@@ -111,7 +111,7 @@
 
         for(let i = 0; i < context.pineaples.length; i++)
         {
-            if(this.pineaples[i] === null)
+            if(context.pineaples[i] === null)
                 continue;
             let top1 = context.pineaples[i].coordinates.Y;
             let bottom1 = context.pineaples[i].coordinates.Y + context.pineaples[i].height;
@@ -127,6 +127,13 @@
             {
                 let el = document.getElementById(`pineapple ${i}`);
                 el.parentElement.removeChild(el);
+                
+                if(gameMode === "online")
+                {
+                    let index = context.pineaples[i].index;
+                    hubConnection.invoke('SendPineapple', index);
+                }
+                
                 context.pineaples[i] = null;
 
                 context.IncreaseTheSizeOfTheSnake(index, 5);

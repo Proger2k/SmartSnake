@@ -22,6 +22,8 @@ let board = new Board(
     height
 );
 
+let userName = document.getElementById("userName").innerText;
+
 const hubConnection = new signalR.HubConnectionBuilder()
     .withUrl("/game")
     .build();

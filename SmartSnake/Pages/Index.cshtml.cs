@@ -18,7 +18,6 @@ namespace SmartSnake.Pages.Menu
         }
 
         public void OnGet()
-        {
-        }
+        { }
     }
 }

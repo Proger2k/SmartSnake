@@ -54,8 +54,17 @@
             else if (status === "-1" && isStarted)
             {
                 let head = document.getElementById(`${connectionId} head`);
-                head.parentNode.removeChild(head);
                 
+                let x = Number(head.style.left.substr(0,  head.style.left.length - 2));
+                let y = Number(head.style.top.substr(0,  head.style.top.length - 2));
+
+                head.parentNode.removeChild(head);
+
+                let pineapple = new Pineapple(context.board.pineaples.length,40, 26, {X: x, Y: y});
+                context.board.pineaples.push(pineapple);
+                gameZone.innerHTML += `<div class="pineapple" id="pineapple ${context.board.pineaples.length - 1}" style="left: ${x}px; top: ${y}px;"></div>`
+                
+
                 let user = context.FindUser(context, connectionId);
                 let index = context.FindIndex(context, user);
                 
@@ -186,9 +195,9 @@
 
     ReceivePineapple()
     {
-        hubConnection.on('ReceivePineapple', function (pineapple)
+        hubConnection.on('ReceivePineapple', function (index)
         {
-            let el = document.getElementById(`pineapple ${pineapple.index}`);
+            let el = document.getElementById(`pineapple ${index}`);
             el.parentNode.removeChild(el);
         });
     }
