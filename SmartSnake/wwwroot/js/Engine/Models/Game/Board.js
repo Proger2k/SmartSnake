@@ -10,7 +10,7 @@
         this.width = width;
         this.height = height;
         this.snakes = new Array(this.numberOfSnakes);
-        this.pineaples = new Array(0);
+        this.pineapples = new Array(0);
         this.Player = null;
         this.context = null;
         this.users = new Array(0);
@@ -109,14 +109,14 @@
             }
         }
 
-        for(let i = 0; i < context.pineaples.length; i++)
+        for(let i = 0; i < context.pineapples.length; i++)
         {
-            if(context.pineaples[i] === null)
+            if(context.pineapples[i] === null)
                 continue;
-            let top1 = context.pineaples[i].coordinates.y;
-            let bottom1 = context.pineaples[i].coordinates.y + context.pineaples[i].height;
-            let left1 = context.pineaples[i].coordinates.x;
-            let right1 = context.pineaples[i].coordinates.x + context.pineaples[i].width;
+            let top1 = context.pineapples[i].coordinates.y;
+            let bottom1 = context.pineapples[i].coordinates.y + context.pineapples[i].height;
+            let left1 = context.pineapples[i].coordinates.x;
+            let right1 = context.pineapples[i].coordinates.x + context.pineapples[i].width;
 
             let top2 = head.coordinates.y;
             let bottom2 = head.coordinates.y + head.height;
@@ -130,11 +130,11 @@
                 
                 if(gameMode === "online")
                 {
-                    let index = context.pineaples[i].index;
+                    let index = context.pineapples[i].index;
                     hubConnection.invoke('SendPineapple', index);
                 }
                 
-                context.pineaples[i] = null;
+                context.pineapples[i] = null;
 
                 context.IncreaseTheSizeOfTheSnake(index, 5);
             }
@@ -271,9 +271,9 @@
 
     RemoveSnake(head, body, index)
     {
-        let pineapple = new Pineapple(this.pineaples.length,40, 26, {x: head.coordinates.x, y: head.coordinates.y});
-        this.pineaples.push(pineapple);
-        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineaples.length - 1}" style="left: ${pineapple.coordinates.x}px; top: ${pineapple.coordinates.y}px;"></div>`
+        let pineapple = new Pineapple(this.pineapples.length,40, 26, {x: head.coordinates.x, y: head.coordinates.y});
+        this.pineapples.push(pineapple);
+        gameZone.innerHTML += `<div class="pineapple" id="pineapple ${this.pineapples.length - 1}" style="left: ${pineapple.coordinates.x}px; top: ${pineapple.coordinates.y}px;"></div>`
 
         
         if(index === 0)

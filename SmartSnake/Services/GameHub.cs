@@ -29,7 +29,7 @@ namespace SmartSnake
             await Clients.Others.SendAsync("ReceiveApple", index, x, y);
         }
 
-        public async Task SendPineapples(Pineapple pineapples)
+        public async Task SendPineapples(Pineapple[] pineapples)
         {
             await Clients.Others.SendAsync("ReceivePineapples", pineapples);
         }
@@ -54,10 +54,10 @@ namespace SmartSnake
             await Clients.Others.SendAsync("BeginningOfTheGame");
         }
 
-        public async Task SendUser()
+        public async Task SendUser(bool isStarted)
         {
             string connectionId = Context.ConnectionId;
-            await Clients.Others.SendAsync("ReceiveUser", connectionId);
+            await Clients.Others.SendAsync("ReceiveUser", connectionId, isStarted);
         }
 
         public async Task AddUser(PlayerConnection playerConnection)
@@ -96,6 +96,13 @@ namespace SmartSnake
 
         public override async Task OnConnectedAsync()
         {
+            if (Context.Items.Keys.FirstOrDefault(x => x.ToString() == "users") == null)
+            {
+                HashSet<string> users = new HashSet<string> {Context.ConnectionId};
+                Context.Items.Add("users", users);
+                Context.Items.Add("isStarted", false);
+            }
+            
             await Clients.Others.SendAsync("Notify", $"{Context.ConnectionId}", "1");
             await Clients.Caller.SendAsync("Notify", $"{Context.ConnectionId}", "0");
 
@@ -104,18 +111,19 @@ namespace SmartSnake
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
+            await Clients.All.SendAsync("Notify", $"{Context.ConnectionId}", "-1");
+            await base.OnDisconnectedAsync(exception);
+        }
+
+        public void RemoveUser(string connectionId)
+        {
             if (Context.Items.Keys.FirstOrDefault(x => x.ToString() == "users") != null)
             {
                 HashSet<string> users = (HashSet<string>)Context.Items["users"];
-                users?.Remove(Context.ConnectionId);
+                users?.Remove(connectionId);
 
-                if (users?.Count == 0)
-                    Context.Items["isStarted"] = false;
-            }
-
-            
-            await Clients.All.SendAsync("Notify", $"{Context.ConnectionId}", "-1");
-            await base.OnDisconnectedAsync(exception);
+                Context.Items["users"] = users;
+            }   
         }
     }
 }

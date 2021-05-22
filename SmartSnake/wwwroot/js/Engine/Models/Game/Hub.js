@@ -26,10 +26,10 @@
     {
         hubConnection.on('Notify', function (connectionId, status) {
             
-            if(status !== "-1")
+            if(status !== "-1" && status !== "0")
             {
                 hubConnection.invoke('AddUser', { 'connectionId': connectionId, 'isGameBegun': isStarted});
-                hubConnection.invoke('SendUser');
+                hubConnection.invoke('SendUser', isStarted);
             }
             
             if (status === "1" && isStarted)
@@ -48,9 +48,7 @@
                 hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': snake});
             }
             else if(status === "0")
-            {
                 isConnected = true;
-            }
             else if (status === "-1" && isStarted)
             {
                 let head = document.getElementById(`${connectionId} head`);
@@ -60,9 +58,9 @@
 
                 head.parentNode.removeChild(head);
 
-                let pineapple = new Pineapple(context.board.pineaples.length,40, 26, {x: x, y: y});
-                context.board.pineaples.push(pineapple);
-                gameZone.innerHTML += `<div class="pineapple" id="pineapple ${context.board.pineaples.length - 1}" style="left: ${x}px; top: ${y}px;"></div>`
+                let pineapple = new Pineapple(context.board.pineapples.length,40, 26, {x: x, y: y});
+                context.board.pineapples.push(pineapple);
+                gameZone.innerHTML += `<div class="pineapple" id="pineapple ${context.board.pineapples.length - 1}" style="left: ${x}px; top: ${y}px;"></div>`
                 
 
                 let user = context.FindUser(context, connectionId);
@@ -76,13 +74,15 @@
 
                 context.board.users.splice(index, 1);
                 context.RemoveSnake(connectionId, context);
+                
+                hubConnection.invoke('RemoveUser', connectionId);
             }
         });
     }
 
     ReceiveUser()
     {
-        hubConnection.on('ReceiveUser', function (connectionId) {
+        hubConnection.on('ReceiveUser', function (connectionId, isStarted) {
             hubConnection.invoke('AddUser', { 'connectionId': connectionId, 'isGameBegun': isStarted});
         })
     }
@@ -168,9 +168,8 @@
         hubConnection.on('ReceiveApples', function (apples)
         {
             if(context.board.apples.length === 0)
-                context.board.apples.push(apples);
-            else
             {
+                context.board.apples = apples;
                 for(let i = 0; i < apples.length; i++)
                 {
                     gameZone.innerHTML += `<div class="apple" id="apple ${apples[i].index}"
@@ -197,9 +196,11 @@
 
     ReceivePineapple()
     {
+        let context = this;
         hubConnection.on('ReceivePineapple', function (index)
         {
             let el = document.getElementById(`pineapple ${index}`);
+            context.board.pineapples.splice(index, 1); 
             el.parentNode.removeChild(el);
         });
     }
@@ -211,15 +212,14 @@
         hubConnection.on('ReceivePineapples', function (pineapples)
         {
             if(context.board.pineapples.length === 0)
-                context.board.pineapples = pineapples;
-            else
             {
+                context.board.pineapples = pineapples;
                 for(let i = 0; i < pineapples.length; i++)
                 {
-                    gameZone.innerHTML += `<div class="apple" id="apple ${pineapples[i].index}"
+                    gameZone.innerHTML += `<div class="pineapple" id="pineapple ${pineapples[i].index}"
                                             style="left: ${pineapples[i].coordinates.x}px;
                                              top: ${pineapples[i].coordinates.y}px;"></div>`
-                }
+                }   
             }
         });
     }
@@ -230,7 +230,7 @@
 
         hubConnection.on('SendApples', function ()
         {
-            hubConnection.invoke('SendApples', { 'apples': context.board.apples });
+            hubConnection.invoke('SendApples', context.board.apples);
         });
     }
 
@@ -240,7 +240,7 @@
 
         hubConnection.on('SendPineapples', function ()
         {
-            hubConnection.invoke('SendPineapples', { 'apples': context.board.pineaples });
+            hubConnection.invoke('SendPineapples', context.board.pineapples);
         });
     }
 
@@ -280,7 +280,7 @@
             hubConnection.invoke('ReceiveApples');
             hubConnection.invoke('ReceivePineapples');
             
-            context.snakes[0] = context.board.Player.snake;
+            context.board.snakes[0] = context.board.Player.snake;
             context.ControlInitialization(context.board.snakes, context.board);
 
             hubConnection.invoke('SendSnake', { 'connectionId': "", 'snake': context.board.Player.snake});
