@@ -79,7 +79,7 @@
         this.Player = new Player(snake);
         gameZone.innerHTML += `<div class="score" id="score" style="
                     left: ${this.snakes[0].head.coordinates.x - document.documentElement.clientWidth / 2}px;
-                    top: ${this.snakes[0].head.coordinates.y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
+                    top: ${this.snakes[0].head.coordinates.y - document.documentElement.clientHeight / 2}px; color: #00f2ff">Your score: 0</div>`;
     }
     
     IsEaten(head, index)

@@ -6,6 +6,7 @@ namespace SmartSnake.Models
     {
         public string Name { get; set; }
         public int Age { get; set; }
-        public double BestScore { get; set; }
+        public int BestScore { get; set; }
+        public int Rating { get; set; }
     }
 }

@@ -356,7 +356,7 @@
 
         gameZone.innerHTML += `<div class="score" id="score" style="
                     left: ${context.board.Player.snake.head.coordinates.x - document.documentElement.clientWidth / 2}px;
-                    top: ${context.board.Player.snake.head.coordinates.y - document.documentElement.clientHeight / 2}px;">Your score: 0</div>`;
+                    top: ${context.board.Player.snake.head.coordinates.y - document.documentElement.clientHeight / 2}px; color: #00f2ff;">Your score: 0</div>`;
     }
 
     ControlInitialization(snakes, context)

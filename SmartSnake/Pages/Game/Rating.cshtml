@@ -4,16 +4,45 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title></title>
+    <title>Restart</title>
+    <link rel="stylesheet" href="~/css/Menu.css">
+    <link rel="stylesheet" href="~/css/rating.css">
 </head>
 <body>
 <div>
-    <h1>Рейтинг!</h1>
+    <form class="form" id="restart_form" method="POST">
+        <h2 class="form__title">Рейтинг игроков</h2>
+        
+        <table>
+            <tr>
+                <th>Место</th>
+                <th>Имя игрока</th>
+                <th>Рейтинг</th>
+            </tr>
+            @{
+                int i = 1;
+                foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <th><h2 class="form__title">@i</h2></th>
+                        <th><h2 class="form__title">@user.Name</h2></th>
+                        <th><h2 class="form__title">@user.Rating</h2></th>
+                    </tr>
+
+                    i += 1;
+                }
+            }
+        </table>
+
+        <div class="alert alert-danger" style="display:none;"></div>
+        
+        <div class="form__input-wrapper" data-input="input-1">
+            <button asp-page="/Index" type="submit" class="form__btn__menu">Выйти в главное меню</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>
